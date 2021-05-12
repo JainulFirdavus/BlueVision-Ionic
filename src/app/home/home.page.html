@@ -1,0 +1,92 @@
+<!-- <ion-content>
+    <div class="ion-text-center">
+        <img class="img1" src="assets/img/opticals.jpg">
+        <p>Blue Vision</p>
+
+    </div>
+    <div class="container">
+        <form #form="ngForm" (ngSubmit)="login(form)">
+            <div class="form ion-text-center">
+                <h2>Sign in</h2>
+                <ion-item lines='none'>
+                  
+                    <ion-input type="text" placeholder="email" name="email" [(ngModel)]="credentials.email" required>
+                    </ion-input>
+                </ion-item>
+
+                <ion-item lines='none'>
+                    <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="credentials.password"
+                        required></ion-input>
+
+                </ion-item>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size=6>
+                            <ion-button type="submit" [disabled]="form.invalid" expand="block" shape="round">SIGN IN
+                            </ion-button>
+                        </ion-col>
+                        <ion-col size=6>
+                            <ion-button shape="round">SIGN UP</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </form>
+    </div>
+</ion-content> -->
+
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Ionic Forms</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <form  (ngSubmit)="onSubmit()" novalidate>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="submitted && errorCtr.name.errors?.required">
+        Name is required.
+      </span>
+      <span class="error ion-padding" *ngIf="submitted && errorCtr.name.errors?.minlength">
+        Min 3 chars long.
+      </span>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" type="email"></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="submitted && errorCtr.email.errors?.required">
+        Email is required.
+      </span>
+      <span class="error ion-padding" *ngIf="submitted && errorCtr.email.errors?.pattern">
+        Enter valid email.
+      </span>
+  
+   <!--    <ion-item lines="full">
+        <ion-label position="floating">DOB</ion-label>
+        <ion-datetime (ionChange)="fetchDate($event)" formControlName="dob" [value]="defaultDate"></ion-datetime>
+      </ion-item> -->
+  <!-- 
+      <ion-item lines="full">
+        <ion-label position="floating">Phone</ion-label>
+        <ion-input maxlength="10" formControlName="phone" type="text" required></ion-input>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="submitted && errorCtr.phone.errors?.required">
+        Phone number is required.
+      </span>
+      <span class="error ion-padding" *ngIf="submitted && errorCtr.phone.errors?.pattern">
+        Number values allowed.
+      </span>
+  
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+        </ion-col>
+      </ion-row> -->
+    </form>
+  </ion-content>

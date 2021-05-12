@@ -1,0 +1,137 @@
+ion-toolbar {
+    height: 75px;
+    --background: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);
+}
+
+ion-menu-button {
+    color: #fff;
+    font-size: 28px;
+    margin-top: 12px;
+}
+
+ion-title {
+    font-size: 28px;
+    margin-top: 12px;
+    text-align: center;
+    margin-left: 15px;
+    color: #fff;
+}
+
+ion-icon {
+    color: #fff;
+    font-size: 28px;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+ion-item {
+    border: 1px solid #dcdcdc;
+    font-size: 13px;
+    --min-height: 0;
+}
+
+//------------------------//
+h2 {
+    margin-left: 10px;
+}
+
+.orders {
+    border-bottom: 1px solid #dcdcdc;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form {
+    margin-top: 10px;
+}
+
+.orderform {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.sphere {
+    background: #E0E0E0;
+    border-bottom: 1px solid #D3D3D3;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 5px;
+}
+
+.right {
+    background: #F5F5F5;
+    border-bottom: 1px solid #D3D3D3;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 5px;
+}
+
+.left {
+    background: #ffffff;
+    border-bottom: 1px solid #D3D3D3;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 5px;
+}
+
+.dv {
+    background: #FFFFFF;
+    border-bottom: 1px solid #D3D3D3;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 5px;
+    padding-bottom: 8px;
+}
+
+.leftdv {
+    background: #F5F5F5;
+    border-bottom: 1px solid #D3D3D3;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 5px;
+    padding-bottom: 8px;
+}
+
+.nv {
+    background: #F5F5F5;
+    border-bottom: 1px solid #D3D3D3;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 5px;
+    padding-bottom: 8px;
+}
+
+.leftnv {
+    background: #FFFFFF;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 5px;
+    padding-bottom: 12px;
+}
+
+.total {
+    margin-top: 8px;
+}
+
+.amount {
+    --background: #dcdcdc;
+}
+
+ion-item.item-has-focus>ion-label {
+    color: #000 !important;
+}
+
+ion-button {
+    font-size: 13px;
+    text-transform: capitalize;
+}
+
+.cancelbtn {
+    --background: #dcdcdc;
+    color: #000;
+}
+
+.savebtn {
+    --background: #52E5E7;
+    color: #000;
+}
