@@ -10,324 +10,379 @@
     <div>
         <h2>Order Form</h2>
     </div>
-    <div class="orders"></div>
-    <div class="form ion-text-center">
-        <ion-item class="orderform" lines='none'>
-            <ion-label position="floating">Order Number</ion-label>
-            <ion-input placeholder='DG-00001'></ion-input>
-        </ion-item>
-        <ion-grid>
-            <ion-row>
-                <ion-col size=5>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Order Date</ion-label>
-                        <ion-datetime></ion-datetime>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=2>
-                </ion-col>
-                <ion-col size=5>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Delivery Date</ion-label>
-                        <ion-datetime></ion-datetime>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=8>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Phone</ion-label>
-                        <ion-input placeholder='+91 1234567890'></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=12>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Name</ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=12>
-                    <ion-item>
-                        <ion-label position="floating">Address</ion-label>
-                        <ion-textarea></ion-textarea>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=4>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Age</ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=3>
-                </ion-col>
-                <ion-col size=5>
-                    <ion-item class="select" lines='none'>
-                        <ion-label>Gender</ion-label>
-                        <ion-select>
-                            <ion-select-option value="Male">Male</ion-select-option>
-                            <ion-select-option value="Female">Female</ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=7>
-                    <ion-item class="select" lines='none'>
-                        <ion-label>Lens Type</ion-label>
-                        <ion-select>
-                            <ion-select-option value="CR">CR</ion-select-option>
-                            <ion-select-option value="GL">GL</ion-select-option>
-                            <ion-select-option value="HC">HC</ion-select-option>
-                            <ion-select-option value="ARC">ARC</ion-select-option>
-                            <ion-select-option value="PROG">PROG</ion-select-option>
-                            <ion-select-option value="DM">DM</ion-select-option>
-                            <ion-select-option value="ARC+PROG">ARC+PROG</ion-select-option>
-                            <ion-select-option value="HC+ARC">HC+ARC</ion-select-option>
-                            <ion-select-option value="SV">SV</ion-select-option>
-                            <ion-select-option value="Bifocal">Bifocal</ion-select-option>
-                            <ion-select-option value="PROG">PROG</ion-select-option>
 
-                        </ion-select>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=5>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Lens Price</ion-label>
-                        <ion-input placeholder='2000'></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=4>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Tint</ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=4></ion-col>
-                <ion-col size=4>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">TAX/GST%</ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=6>
-                    <ion-item class="select" lines='none'>
-                        <ion-label>Frame Type</ion-label>
-                        <ion-select>
-                            <ion-select-option value="FF">FF</ion-select-option>
-                            <ion-select-option value="FS">FS</ion-select-option>
-                            <ion-select-option value="FSH">FSH</ion-select-option>
-                            <ion-select-option value="FRL">FRL</ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=2></ion-col>
-                <ion-col size=4>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Frame Price</ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=4>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Brand</ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col></ion-col>
-                <ion-col size=2></ion-col>
-                <ion-col size=4>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">TAX/GST%</ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
+    <!-- <app-dynamic-form [questions]="questions$ | async"></app-dynamic-form> -->
 
 
 
-        </ion-grid>
-        <ion-grid>
-            <ion-row class="sphere">
-                <ion-col size=3></ion-col>
-                <ion-col size=3>SPHERE<span style="display:block;">(SPH)</span></ion-col>
-                <ion-col size=3.5>CYLINDER<span style="display:block;">(CYL)</span></ion-col>
-                <ion-col size=2.5>AXIS<span style="display:block;">(AXI)</span></ion-col>
-            </ion-row>
-            <ion-row class="right">
-                <ion-col size=3>Right EYE</ion-col>
-                <ion-col size=3></ion-col>
-                <ion-col size=3.5></ion-col>
-                <ion-col size=2.5></ion-col>
-            </ion-row>
-            <ion-row class="dv">
-                <ion-col size=3>DV</ion-col>
-                <ion-col size=3>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=3.5>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=2.5>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row class="nv">
-                <ion-col size=3>NV</ion-col>
-                <ion-col size=3>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=3.5>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=2.5>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row class="left">
-                <ion-col size=3>Left EYE</ion-col>
-                <ion-col size=3></ion-col>
-                <ion-col size=3.5></ion-col>
-                <ion-col size=2.5></ion-col>
-            </ion-row>
-            <ion-row class="leftdv">
-                <ion-col size=3>DV</ion-col>
-                <ion-col size=3>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=3.5>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=2.5>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row class="leftnv">
-                <ion-col size=3>NV</ion-col>
-                <ion-col size=3>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=3.5>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=2.5>
-                    <ion-item>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-        <ion-grid>
-            <ion-row>
-                <ion-col size=4>
-                    <ion-item class="amount" lines='none'>
-                        <ion-label position="floating">Total Amount</ion-label>
-                        <ion-input placeholder="0"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=5>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Discount Value</ion-label>
-                        <ion-input placeholder="0"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=3>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Advance</ion-label>
-                        <ion-input placeholder="0"></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=5>
-                    <ion-item class="amount" lines='none'>
-                        <ion-label position="floating">Balance</ion-label>
-                        <ion-input placeholder="0"></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=2></ion-col>
-                <ion-col size=5>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Next Visit Date</ion-label>
-                        <ion-datetime></ion-datetime>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=7>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Referred By</ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=6>
-                    <ion-item lines='none'>
-                        <ion-label position="floating">Order Taken By</ion-label>
-                        <ion-input></ion-input>
-                    </ion-item>
-                </ion-col>
-                <ion-col size=6>
-                    <ion-item class="select" lines='none'>
-                        <ion-label position="floating">Delivered Status</ion-label>
-                        <ion-select>
-                            <ion-select-option value="CR">pending</ion-select-option>
-                            <ion-select-option value="GL">Fitting</ion-select-option>
-                            <ion-select-option value="HC">Ready to Deliver</ion-select-option>
-                            <ion-select-option value="ARC">Delivered</ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col size=3>
-                    <ion-button class="cancelbtn" size="medium">Cancel</ion-button>
-                </ion-col>
-                <ion-col size=1></ion-col>
-                <ion-col size=4>
-                    <ion-button class="savebtn" size="medium">Save & Close</ion-button>
-                </ion-col>
-                <ion-col size=4>
-                    <ion-button class="savebtn" size="medium">Save & Print</ion-button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+        <div class="orders">
+            <div class="form ion-text-center">
+                <ion-item class="orderform" lines='none'>
+                    <ion-label position="floating">Order Number
+                    </ion-label>
+                    <ion-input placeholder='BV-00001' type="text" formControlName="order_id"></ion-input>
+                </ion-item>
 
 
 
-    </div>
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size=5>
+                            <ion-item [ngClass]="{ 'is-invalid': submitted && f.order_date.errors }">
+                                <ion-label position="floating">Order Date</ion-label>
+                                <ion-datetime class="form-controll" formControlName="order_date"
+                                    displayFormat="MM/DD/YYYY" required>
+                                </ion-datetime>
+                            </ion-item>
+                            <div class="validation-errors">
+                                <!--  <ng-container *ngFor="let validation of validation_messages.username">
+                                  <div class="error-message" *ngIf="orderForm.get('username').hasError(validation.type) && (orderForm.get('username').dirty || orderForm.get('username').touched)">
+                                    {{ validation.message }}
+                                  </div>
+                                </ng-container> -->
+                            </div>
+                        </ion-col>
+                        <ion-col size=2>
+                        </ion-col>
+                        <ion-col size=5>
+                            <ion-item [ngClass]="{ 'is-invalid': submitted && f.delivery_date.errors }">
+                                <ion-label position="floating">Delivery Date</ion-label>
+                                <ion-datetime formControlName="delivery_date" displayFormat="MM/DD/YYYY"></ion-datetime>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col size=8>
+                            <ion-item [ngClass]="{ 'is-invalid': submitted && f.customer_phone.errors }">
+                                <ion-label position="floating">Phone</ion-label>
+                                <ion-input type="number" formControlName="customer_phone" placeholder='+91 1234567890'
+                                    required (focusout)="getuser()">
+                                </ion-input>
+                            </ion-item>
+
+                            <!--  <div class="validation-errors">
+                                <div *ngIf="submitted && f.customer_phone.errors" class="invalid-feedback">
+                                    <div *ngIf="f.customer_phone.errors.required">phone is required</div>
+                                </div>
+                            </div> -->
+
+                            <!--  <ng-container *ngFor="let validation of validation_messages.customer_phone">
+                                    <div class="error-message"
+                                        *ngIf="orderForm.get('customer_phone').hasError(validation.type) && (orderForm.get('customer_phone').dirty || orderForm.get('customer_phone').touched)">
+                                        {{ validation.message }}
+                                    </div>
+                                </ng-container> -->
+                        </ion-col>
+                    </ion-row>
+
+
+                    <ion-row>
+                        <ion-col size=12>
+                            <ion-item [ngClass]="{ 'is-invalid': submitted && f.customer_name.errors }">
+                                <ion-label position="floating">Name</ion-label>
+                                <ion-input type="text" formControlName="customer_name"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=12>
+                            <ion-item [ngClass]="{ 'is-invalid': submitted && f.customer_address.errors }">
+                                <ion-label position="floating">Address</ion-label>
+                                <ion-textarea type="text" formControlName="customer_address"></ion-textarea>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=4>
+                            <ion-item [ngClass]="{ 'is-invalid': submitted && f.customer_age.errors }">
+                                <ion-label position="floating">Age</ion-label>
+                                <ion-input type="number" formControlName="customer_age"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=3>
+                        </ion-col>
+                        <ion-col size=5>
+                            <ion-item class="select" lines='none'
+                                [ngClass]="{ 'is-invalid': submitted && f.customer_gender.errors }">
+                                <ion-label position="floating">Gender</ion-label>
+                                 <ion-select formControlName="customer_gender">
+                                    <ion-select-option
+                                        *ngFor="let val of  [{value:'Male', label:'Male'},{value:'Female', label: 'Female'},{value:'Other', label: 'Other'}]"
+                                        [value]="val.value">
+                                        {{val.label}}
+                                    </ion-select-option>
+                                </ion-select>
+                               <!--  <ion-select formControlName="customer_gender">
+                                    <ion-select-option value="Male">Male</ion-select-option>
+                                    <ion-select-option value="Female">Female</ion-select-option>
+                                    <ion-select-option value="Other">Other</ion-select-option>
+                                </ion-select> -->
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=7>
+                            <ion-item class="select" lines='none'
+                                [ngClass]="{ 'is-invalid': submitted && f.lens_type.errors }">
+                                <ion-label>Lens Type</ion-label>
+                                <ion-select formControlName="lens_type">
+                                    <ion-select-option value="CR">CR</ion-select-option>
+                                    <ion-select-option value="GL">GL</ion-select-option>
+                                    <ion-select-option value="HC">HC</ion-select-option>
+                                    <ion-select-option value="ARC">ARC</ion-select-option>
+                                    <ion-select-option value="PROG">PROG</ion-select-option>
+                                    <ion-select-option value="DM">DM</ion-select-option>
+                                    <ion-select-option value="ARC+PROG">ARC+PROG</ion-select-option>
+                                    <ion-select-option value="HC+ARC">HC+ARC</ion-select-option>
+                                    <ion-select-option value="SV">SV</ion-select-option>
+                                    <ion-select-option value="Bifocal">Bifocal</ion-select-option>
+                                    <ion-select-option value="PROG">PROG</ion-select-option>
+
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=5>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.lens_price.errors }">
+                                <ion-label position="floating">Lens Price</ion-label>
+                                <ion-input placeholder='2000' type="number" formControlName="lens_price"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=4>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.tint.errors }">
+                                <ion-label position="floating">Tint</ion-label>
+                                <ion-input formControlName="tint"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=4></ion-col>
+                        <ion-col size=4>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.lens_tax.errors }">
+                                <ion-label position="floating">TAX/GST%</ion-label>
+                                <ion-input type="number" formControlName="lens_tax"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=6>
+                            <ion-item class="select" lines='none'
+                                [ngClass]="{ 'is-invalid': submitted && f.frame_type.errors }">
+                                <ion-label>Frame Type</ion-label>
+                                <ion-select formControlName="frame_type">
+                                    <ion-select-option value="FF">FF</ion-select-option>
+                                    <ion-select-option value="FS">FS</ion-select-option>
+                                    <ion-select-option value="FSH">FSH</ion-select-option>
+                                    <ion-select-option value="FRL">FRL</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=2></ion-col>
+                        <ion-col size=4>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_price.errors }">
+                                <ion-label position="floating">Frame Price</ion-label>
+                                <ion-input formControlName="frame_price"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=4>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_brand.errors }">
+                                <ion-label position="floating">Brand</ion-label>
+                                <ion-input formControlName="frame_brand"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col></ion-col>
+                        <ion-col size=2></ion-col>
+                        <ion-col size=4>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_tax.errors }">
+                                <ion-label position="floating">TAX/GST%</ion-label>
+                                <ion-input type="number" formControlName="frame_tax"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+
+                <ion-grid [ngStyle]="{'color':'blue'}" formGroupName="frame_details">
+                    <ion-row class="sphere">
+                        <ion-col size=3></ion-col>
+                        <ion-col size=3>SPHERE<span style="display:block;">(SPH)</span></ion-col>
+                        <ion-col size=3.5>CYLINDER<span style="display:block;">(CYL)</span></ion-col>
+                        <ion-col size=2.5>AXIS<span style="display:block;">(AXI)</span></ion-col>
+                    </ion-row>
+                    <ion-row class="right">
+                        <ion-col size=3>Right EYE</ion-col>
+                        <ion-col size=3></ion-col>
+                        <ion-col size=3.5></ion-col>
+                        <ion-col size=2.5></ion-col>
+                    </ion-row>
+
+                    <ion-row class="dv" formGroupName="right">
+                        <ion-col size=3>DV</ion-col>
+                        <ion-col size=3>
+                            <ion-item>
+                                <ion-input formControlName="dv_sph"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=3.5>
+                            <ion-item>
+                                <ion-input formControlName="dv_cyl"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=2.5>
+                            <ion-item>
+                                <ion-input formControlName="dv_axi"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row class="nv" formGroupName="right">
+                        <ion-col size=3>NV</ion-col>
+                        <ion-col size=3>
+                            <ion-item>
+                                <ion-input formControlName="nv_sph"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=3.5>
+                            <ion-item>
+                                <ion-input formControlName="nv_cyl"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=2.5>
+                            <ion-item>
+                                <ion-input formControlName="nv_axi"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row class="left">
+                        <ion-col size=3>Left EYE</ion-col>
+                        <ion-col size=3></ion-col>
+                        <ion-col size=3.5></ion-col>
+                        <ion-col size=2.5></ion-col>
+                    </ion-row>
+                    <ion-row class="leftdv" formGroupName="left">
+                        <ion-col size=3>DV</ion-col>
+                        <ion-col size=3>
+                            <ion-item>
+                                <ion-input formControlName="dv_sph"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=3.5>
+                            <ion-item>
+                                <ion-input formControlName="dv_cyl"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=2.5>
+                            <ion-item>
+                                <ion-input formControlName="dv_axi"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="leftnv" formGroupName="left">
+                        <ion-col size=3>NV</ion-col>
+                        <ion-col size=3>
+                            <ion-item>
+                                <ion-input formControlName="nv_sph"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=3.5>
+                            <ion-item>
+                                <ion-input formControlName="nv_cyl"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=2.5>
+                            <ion-item>
+                                <ion-input formControlName="nv_axi"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size=4>
+                            <ion-item class="amount" lines='none'
+                                [ngClass]="{ 'is-invalid': submitted && f.total_amount.errors }">
+                                <ion-label position="floating">Total Amount</ion-label>
+                                <ion-input placeholder="0" type="number" formControlName="total_amount"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=5>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.discount.errors }">
+                                <ion-label position="floating">Discount Value</ion-label>
+                                <ion-input placeholder="0" type="number" formControlName="discount"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=3>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.advance.errors }">
+                                <ion-label position="floating">Advance</ion-label>
+                                <ion-input placeholder="0" type="number" formControlName="advance"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=5>
+                            <ion-item class="amount" lines='none'
+                                [ngClass]="{ 'is-invalid': submitted && f.balance.errors }">
+                                <ion-label position="floating">Balance</ion-label>
+                                <ion-input placeholder="0" type="number" formControlName="balance"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=2></ion-col>
+                        <ion-col size=5>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.next_visit.errors }">
+                                <ion-label position="floating">Next Visit Date</ion-label>
+                                <ion-datetime formControlName="next_visit"></ion-datetime>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=7>
+                            <ion-item lines='none'>
+                                <ion-label position="floating">Referred By</ion-label>
+                                <ion-input formControlName="refered_by"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=6>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.grand_total.errors }">
+                                <ion-label position="floating">Order Taken By</ion-label>
+                                <ion-input type="number" formControlName="grand_total"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=6>
+                            <ion-item class="select" lines='none'
+                                [ngClass]="{ 'is-invalid': submitted && f.delivery_status.errors }">
+                                <ion-label position="floating">Delivered Status</ion-label>
+                                <ion-select formControlName="delivery_status">
+                                    <ion-select-option value="pending">Pending</ion-select-option>
+                                    <ion-select-option value="fitting">Fitting</ion-select-option>
+                                    <ion-select-option value="ready">Ready to Deliver</ion-select-option>
+                                    <ion-select-option value="delivered">Delivered</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=3>
+                            <ion-button class="cancelbtn" size="medium">Cancel</ion-button>
+                        </ion-col>
+                        <ion-col size=1></ion-col>
+                        <!-- <ion-col size=4>
+                            <ion-button class="savebtn" size="medium">Save & Close</ion-button>
+                        </ion-col> -->
+                        <ion-col size=4>
+                            <ion-button class="savebtn" type="submit" size="medium">Save & Print</ion-button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </div>
+    </form>
 </ion-content>

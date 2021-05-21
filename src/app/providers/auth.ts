@@ -1,9 +1,9 @@
 import { Injector, Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-// import { Storage } from '@ionic/storage';
-import { HttpClient } from '@angular/common/http';
-// import { GlobalProvider } from '../../providers/global/global';
+/* import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators'; */
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
+import { environment } from '../../environments/environment';
 export class User {
 
   displayname: string;
@@ -26,74 +26,37 @@ export class AuthProvider {
 
   currentUser: User;
   returnAccess: any;
-
-  constructor(protected injector: Injector, public global: GlobalProvider, private storage: Storage, private http: HttpClient) {
-
-  }
-
-  public login(credentials) {
-
-    if (credentials.username === null || credentials.password === null) {
-
-      return Observable.throw("Please insert credentials");
+  baseUrl = environment.baseUrl;
+  /* handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
     } else {
-
-      return Observable.create(observer => {
-
-        this.http.post('', { email: credentials.email, password: credentials.password }).subscribe(response => {
-
-          this.returnAccess = response;
-
-          if (this.returnAccess.result != "Success!") {
-
-            this.global.showError(this.returnAccess.result);
-          } else {
-
-            if (credentials.remember == "yes") {
-
-              this.storage.set('displayname', this.returnAccess.displayname);
-              this.storage.set('username', credentials.username);
-              this.storage.set('password', credentials.password);
-            } else {
-
-              this.storage.remove("username");
-              this.storage.remove("password");
-              this.storage.remove("displayname");
-            }
-
-            this.currentUser = new User(this.returnAccess.displayname, credentials.username, credentials.password, credentials.remember);
-
-            observer.next(true);
-            observer.complete();
-          }
-        });
-      });
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
     }
+    // Return an observable with a user-facing error message.
+    return throwError(
+      'Something bad happened; please try again later.');
+  } */
+  constructor(protected injector: Injector, private http: HttpClient) {
+
   }
 
-  public getUserInfo(): User {
-    return this.currentUser;
+
+
+  login(value) {
+    console.log("value", value, this.baseUrl);
+    return this.http.post(this.baseUrl + '/employee/login', { email: value.email, password: value.password })
   }
 
-  public logout() {
-    return Observable.create(observer => {
 
-      if (this.currentUser.remember == "no") {
-        this.storage.remove("username");
-        this.storage.remove("password");
-        this.storage.remove("displayname");
-      }
-      this.currentUser = null;
-      observer.next(true);
-      observer.complete();
-    });
+  register(value) {
+    console.log("value", value, this.baseUrl);
+    return this.http.post(this.baseUrl + '/employee/register', { username: value.username, email: value.email, password: value.password, phone: value.phone, role: 'employee', createdBy: value.user, date: Date.now() })
   }
 
-  postAuth(username, password) {
-
-    this.post.restAuth(username, password).subscribe(response => {
-
-      this.returnAccess = response;
-    });
-  }
 }

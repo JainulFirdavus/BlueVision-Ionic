@@ -7,18 +7,74 @@
     <div class="container">
         <div class="form ion-text-center">
             <h2>Sign up</h2>
-            <ion-item lines='none'>
-                <ion-input placeholder='Name'></ion-input>
-            </ion-item>
-            <ion-item lines='none'>
-                <ion-input placeholder='Email'></ion-input>
-            </ion-item>
+            <form [formGroup]="registerForm" (ngSubmit)="submit()">
+                <ion-item>
+                    <ion-label position="floating">Username</ion-label>
+                    <ion-input inputmode="text" formControlName='username'></ion-input>
+                </ion-item>
+                <div>
+                    <ng-container *ngIf="(username.dirty || username.touched)">
+                        <small *ngIf="username.hasError('required')" class=" error-message"
+                            [ngStyle]="{'color': 'red'}">Username Required</small>
+                    </ng-container>
+                </div>
+                <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input inputmode="email" formControlName="email"></ion-input>
 
-            <ion-item lines='none'>
-                <ion-input placeholder='Password'></ion-input>
-            </ion-item>
-            <ion-button shape="round">Submit</ion-button>
-            <h4>back to Sign in</h4>
+                </ion-item>
+                <ng-container *ngIf="(email.dirty || email.touched)">
+                    <small *ngIf="email.hasError('required')" class=" error-message" [ngStyle]="{'color': 'red'}">Email
+                        Required</small>
+                </ng-container>
+
+                <ion-item>
+                    <ion-label position="floating">Mobile</ion-label>
+                    <ion-input inputmode="email" formControlName="phone"></ion-input>
+
+                </ion-item>
+                <ng-container *ngIf="(phone.dirty || phone.touched)">
+                    <small *ngIf="phone.hasError('required')" class=" error-message" [ngStyle]="{'color': 'red'}">Mobile
+                        Required</small>
+                </ng-container>
+
+                <ion-item>
+                    <ion-label position="floating">password</ion-label>
+                    <ion-input placeholder='Password' type="password" formControlName='password' required>
+                    </ion-input>
+                </ion-item>
+                <ng-container *ngIf="(password.dirty || password.touched)">
+                    <small *ngIf="password.hasError('required')" class=" error-message"
+                        [ngStyle]="{'color': 'red'}">password Required</small>
+                </ng-container>
+
+
+                <!-- <ion-item>
+                    <ion-label position="floating">Date of Join</ion-label>
+                    <ion-input placeholder='Password' type="password" formControlName='password' required>
+                    </ion-input>
+                </ion-item>
+                <ng-container *ngIf="(password.dirty || password.touched)">
+                    <small *ngIf="password.hasError('required')" class=" error-message"
+                        [ngStyle]="{'color': 'red'}">password Required</small>
+                </ng-container>
+
+                
+                <ion-item>
+                    <ion-label position="floating">Position</ion-label>
+                    <ion-input placeholder='Password' type="password" formControlName='password' required>
+                    </ion-input>
+                </ion-item>
+                <ng-container *ngIf="(password.dirty || password.touched)">
+                    <small *ngIf="password.hasError('required')" class=" error-message"
+                        [ngStyle]="{'color': 'red'}">password Required</small>
+                </ng-container> -->
+
+
+
+                <ion-button [disabled]="!registerForm.valid" type="submit" shape="round">Register</ion-button>
+                <h4>back to Sign in</h4>
+            </form>
         </div>
     </div>
 </ion-content>

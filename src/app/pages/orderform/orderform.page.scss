@@ -135,3 +135,11 @@ ion-button {
     --background: #52E5E7;
     color: #000;
 }
+
+
+.is-invalid {
+  /*   --background: #f0fafa;
+    color: #000; */
+    border: red solid 1px;
+}
+

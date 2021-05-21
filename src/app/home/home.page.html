@@ -1,92 +1,69 @@
-<!-- <ion-content>
+<ion-content>
     <div class="ion-text-center">
         <img class="img1" src="assets/img/opticals.jpg">
         <p>Blue Vision</p>
 
     </div>
     <div class="container">
-        <form #form="ngForm" (ngSubmit)="login(form)">
-            <div class="form ion-text-center">
-                <h2>Sign in</h2>
-                <ion-item lines='none'>
-                  
-                    <ion-input type="text" placeholder="email" name="email" [(ngModel)]="credentials.email" required>
-                    </ion-input>
+        <div class="form ion-text-center">
+            <h2 [style.color]="'#43b8ed'">Sign in</h2>
+
+
+            <form [formGroup]="loginForm" (ngSubmit)="submit()">
+
+                <!--     <ion-item lines='none'>
+                    <ion-input inputmode="text" formControlName="name"></ion-input>
                 </ion-item>
 
-                <ion-item lines='none'>
-                    <ion-input name="password" type="password" placeholder="Password" [(ngModel)]="credentials.password"
-                        required></ion-input>
 
+                <div *ngFor="let error of errorMessages.name">
+                    <p [ngStyle]="{'color': 'red','font-size':'10px' }"> {{error.type | json}} </p>
+                    <p [ngStyle]="{'color': 'red','font-size':'10px' }"> {{(name.dirty || name.touched)}} </p>
+                    <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+                        <small class="error-message" [ngStyle]="{'color': 'red'}">{{error.message}}</small>
+                    </ng-container>
+                </div> -->
+
+                <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input inputmode="email" formControlName="email"></ion-input>
                 </ion-item>
+                <div *ngFor="let error of errorMessages.email">
+                    <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+                        <small class="error-message" [ngStyle]="{'color': 'red'}">{{error.message}}</small>
+                    </ng-container>
+                </div>
+                <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input type="password" formControlName="password"></ion-input>
+                </ion-item>
+                <div *ngFor="let error of errorMessages.password">
+                    <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+                        <small class="error-message" [ngStyle]="{'color': 'red'}">{{error.message}}</small>
+                    </ng-container>
+                </div>
+
+                <!-- <ion-item lines='none'>
+                    <ion-input placeholder='Password'></ion-input>
+                </ion-item> -->
                 <ion-grid>
                     <ion-row>
-                        <ion-col size=6>
-                            <ion-button type="submit" [disabled]="form.invalid" expand="block" shape="round">SIGN IN
-                            </ion-button>
-                        </ion-col>
-                        <ion-col size=6>
-                            <ion-button shape="round">SIGN UP</ion-button>
+                        <ion-col>
+                            <ion-button [disabled]="!loginForm.valid" type="submit" expand="round">SIGN IN</ion-button>
                         </ion-col>
                     </ion-row>
+                    <ion-row>
+                        <!--  <ion-col size=6>
+                            <ion-button [disabled]="!loginForm.valid" type="submit" shape="round">SIGN IN</ion-button>
+                        </ion-col> -->
+                        <!--   <ion-col size=6>
+                            <ion-button shape="round" (click)="gotoHome()">SIGN UP</ion-button>
+                        </ion-col> -->
+                    </ion-row>
                 </ion-grid>
-            </div>
-        </form>
+            </form>
+
+
+        </div>
     </div>
-</ion-content> -->
-
-
-<ion-header>
-    <ion-toolbar>
-      <ion-title>Ionic Forms</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <form  (ngSubmit)="onSubmit()" novalidate>
-  
-      <ion-item lines="full">
-        <ion-label position="floating">Name</ion-label>
-        <ion-input formControlName="name" type="text"></ion-input>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="submitted && errorCtr.name.errors?.required">
-        Name is required.
-      </span>
-      <span class="error ion-padding" *ngIf="submitted && errorCtr.name.errors?.minlength">
-        Min 3 chars long.
-      </span>
-  
-      <ion-item lines="full">
-        <ion-label position="floating">Email</ion-label>
-        <ion-input formControlName="email" type="email"></ion-input>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="submitted && errorCtr.email.errors?.required">
-        Email is required.
-      </span>
-      <span class="error ion-padding" *ngIf="submitted && errorCtr.email.errors?.pattern">
-        Enter valid email.
-      </span>
-  
-   <!--    <ion-item lines="full">
-        <ion-label position="floating">DOB</ion-label>
-        <ion-datetime (ionChange)="fetchDate($event)" formControlName="dob" [value]="defaultDate"></ion-datetime>
-      </ion-item> -->
-  <!-- 
-      <ion-item lines="full">
-        <ion-label position="floating">Phone</ion-label>
-        <ion-input maxlength="10" formControlName="phone" type="text" required></ion-input>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="submitted && errorCtr.phone.errors?.required">
-        Phone number is required.
-      </span>
-      <span class="error ion-padding" *ngIf="submitted && errorCtr.phone.errors?.pattern">
-        Number values allowed.
-      </span>
-  
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
-        </ion-col>
-      </ion-row> -->
-    </form>
-  </ion-content>
+</ion-content>
