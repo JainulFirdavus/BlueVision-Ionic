@@ -10,8 +10,13 @@
                 </ion-label>
             </div>
             <ion-list class="menu-items" lines="none">
-                <!-- *ngFor="menu in menuList" -->
-                <ion-menu-toggle>
+                <!-- {{menuList |json}} -->
+                <ion-menu-toggle *ngFor="let data of menuList">
+                    <ion-item routerLink={{data.url}} class="menuborder">
+                        <ion-icon name={{data.icon}}></ion-icon>{{data.name}}
+                    </ion-item>
+                </ion-menu-toggle>
+                <!-- <ion-menu-toggle>
                     <ion-item routerLink="/dashboard" class="menuborder">
                         <ion-icon name="aperture-outline"></ion-icon>Dashboard
                     </ion-item>
@@ -45,7 +50,7 @@
                     <ion-item routerLink="logout" class="menuborder">
                         <ion-icon name="settings-outline"></ion-icon>Logout
                     </ion-item>
-                </ion-menu-toggle>
+                </ion-menu-toggle> -->
             </ion-list>
         </ion-content>
     </ion-menu>
