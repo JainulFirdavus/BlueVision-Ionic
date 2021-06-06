@@ -10,17 +10,23 @@
     <div>
         <h2>Customer Information</h2>
     </div>
-    <div class="orders"></div>
-    <div class="form ion-text-center">
-        <ion-item lines='none'>
+    <form [formGroup]="getuser" (ngSubmit)="submit()">
+        <div class="orders">
+            <div class="form ion-text-center">
+                <!--   <ion-item lines='none'>
             <ion-label position="floating">Name</ion-label>
             <ion-input></ion-input>
-        </ion-item>
+        </ion-item> -->
 
-        <ion-item lines='none'>
-            <ion-label position="floating">Phone No</ion-label>
-            <ion-input></ion-input>
-        </ion-item>
-        <ion-button class="cancelbtn" size="medium">Submit</ion-button>
-    </div>
+                <ion-item lines='none'>
+                    <ion-label position="floating">Phone No</ion-label>
+                    <ion-input inputmode="text" formControlName="phone" required></ion-input>
+
+                </ion-item>
+                <ion-button class="cancelbtn" type="submit" size="medium">Submit</ion-button>
+            </div>
+
+            {{userList |json}}
+        </div>
+    </form>
 </ion-content>

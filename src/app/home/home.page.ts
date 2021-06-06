@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 
@@ -56,15 +57,33 @@ export class HomePage implements OnInit {
        }
      ] */
   };
-  constructor(public formBuilder: FormBuilder, private auth: AuthProvider, private router: Router) {
+  constructor(public formBuilder: FormBuilder, private auth: AuthProvider, private router: Router, public toastController: ToastController) {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(4)]],
     })
   }
 
-  ngOnInit() {
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
 
+
+  ngOnInit() {
+    if (localStorage.getItem('token')) {
+      var uses = JSON.parse(localStorage.getItem('token'))
+      if (uses.token) {
+        if (uses.role == 'admin') {
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.router.navigate(['/orderform']);
+        }
+      }
+    }
   }
 
   get password() {
@@ -85,7 +104,15 @@ export class HomePage implements OnInit {
       console.log(this.loginForm.value)
       this.auth.login(this.loginForm.value).subscribe((response) => {
         console.log(response)
-
+        if (response && response.status == 1) {
+          if (response.response.role == 'admin') {
+            this.router.navigate(['/dashboard']);
+          } else {
+            this.router.navigate(['/orderform']);
+          }
+        } else {
+          this.presentToast('invalid details')
+        }
       });
     }
   }

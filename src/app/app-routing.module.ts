@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LogoutComponent } from './logout/logout.component'
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -12,6 +13,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'createaccount',
+    loadChildren: () => import('./createaccount/createaccount.module').then(m => m.CreateaccountPageModule)
+  },
+  { path: 'logout', component: LogoutComponent }
+  /* {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
   },
@@ -33,10 +39,7 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },
-  {
-    path: 'createaccount',
-    loadChildren: () => import('./createaccount/createaccount.module').then( m => m.CreateaccountPageModule)
-  },
+ 
   {
     path: 'orderform',
     loadChildren: () => import('./pages/orderform/orderform.module').then( m => m.OrderformPageModule)
@@ -44,7 +47,7 @@ const routes: Routes = [
   {
     path: 'customervisit',
     loadChildren: () => import('./pages/customervisit/customervisit.module').then( m => m.CustomervisitPageModule)
-  },
+  }, */
 ];
 
 @NgModule({

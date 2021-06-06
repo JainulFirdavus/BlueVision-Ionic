@@ -8,9 +8,9 @@
                     <h2>Blue Vision</h2>
                     <!-- <p>Opticals</p> -->
                 </ion-label>
-
             </div>
             <ion-list class="menu-items" lines="none">
+                <!-- *ngFor="menu in menuList" -->
                 <ion-menu-toggle>
                     <ion-item routerLink="/dashboard" class="menuborder">
                         <ion-icon name="aperture-outline"></ion-icon>Dashboard
@@ -39,6 +39,11 @@
                 <ion-menu-toggle>
                     <ion-item routerLink="/settings" class="menuborder">
                         <ion-icon name="settings-outline"></ion-icon>Settings
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item routerLink="logout" class="menuborder">
+                        <ion-icon name="settings-outline"></ion-icon>Logout
                     </ion-item>
                 </ion-menu-toggle>
             </ion-list>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { Router } from '@angular/router';
 // import { ToastrService } from 'ngx-toastr';
@@ -38,13 +39,14 @@ export class CreateaccountPage {
     ],
   }
 
-  constructor(public formBuilder: FormBuilder, private auth: AuthProvider, private router: Router) {
+  constructor(public formBuilder: FormBuilder, private auth: AuthProvider, private router: Router, public toastController: ToastController) {
 
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
       phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10)]],
       password: ['', [Validators.required, Validators.minLength(4)]],
+      role: [false],
       // confirmpass: ['', [Validators.required, Validators.minLength(4)]],
 
     })
@@ -70,6 +72,9 @@ export class CreateaccountPage {
     return this.registerForm.get("username");
   }
 
+  get role() {
+    return this.registerForm.get("role");
+  }
 
   submit() {
     console.log("sd", this.registerForm.value);
@@ -83,9 +88,15 @@ export class CreateaccountPage {
       // this.registerForm.value['user'] = 'test';
 
       this.auth.register(this.registerForm.value).subscribe((response) => {
-        console.log(response)
         if (response['response'].status == 1) {
           this.router.navigate(['/home']);
+        } else {
+          console.log(response)
+
+          this.toastController.create({
+            message: 'invalid credentials',
+            duration: 2000
+          });
         }
       });
     }

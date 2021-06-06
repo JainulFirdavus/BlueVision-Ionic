@@ -10,12 +10,14 @@
     <div>
         <h2 class="ion-text-center">Customer Visit</h2>
     </div>
-    <div class="orders"></div>
-    <div class="form ion-text-center">
-        <ion-item lines='none'>
-            <ion-label position="floating"> Date</ion-label>
-            <ion-datetime></ion-datetime>
-        </ion-item>
-        <ion-button class="cancelbtn" size="medium">Submit</ion-button>
-    </div>
+    <form [formGroup]="getuser" (ngSubmit)="submit()">
+        <div class="orders"></div>
+        <div class="form ion-text-center">
+            <ion-item lines='none'>
+                <ion-label position="floating"> Date</ion-label>
+                <ion-datetime formControlName="date" required></ion-datetime>
+            </ion-item>
+            <ion-button class="cancelbtn" type="submit" size="medium">Submit</ion-button>
+        </div>
+    </form>
 </ion-content>

@@ -1,22 +1,24 @@
 import { Injector, Injectable } from '@angular/core';
 /* import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators'; */
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 export class User {
 
-  displayname: string;
+  email: string;
   username: string;
   password: string;
-  remember: string;
+  phone: string;
 
-  constructor(displayname: string, username: string, password: string, remember: string) {
+  constructor(email: string, username: string, password: string, phone: string) {
 
-    this.displayname = displayname;
+    this.email = email;
     this.username = username;
     this.password = password;
-    this.remember = remember;
+    this.phone = phone;
   }
 }
 
@@ -46,17 +48,39 @@ export class AuthProvider {
 
   }
 
-
-
   login(value) {
     console.log("value", value, this.baseUrl);
-    return this.http.post(this.baseUrl + '/employee/login', { email: value.email, password: value.password })
+    return this.http.post(this.baseUrl + '/employee/login', { email: value.email, password: value.password }).pipe(
+      map((res: any) => {
+        if (res.status == 0) {
+          return res
+        } else {
+          console.log("res", res);
+          localStorage.setItem("token", JSON.stringify({ token: res.response.token, role: res.response.role, user_id: res.response._id, }));
+          return res
+        }
+      }),
+      catchError(() => of([]))
+    );
   }
 
+
+  logout() {
+    localStorage.removeItem("token")
+    return this.http.post(this.baseUrl + '/employee/logut', {})
+  }
 
   register(value) {
     console.log("value", value, this.baseUrl);
-    return this.http.post(this.baseUrl + '/employee/register', { username: value.username, email: value.email, password: value.password, phone: value.phone, role: 'employee', createdBy: value.user, date: Date.now() })
+    return this.http.post(this.baseUrl + '/employee/register', { username: value.username, email: value.email, password: value.password, phone: value.phone, role: value.role, createdBy: value.user, date: Date.now() })
   }
+
+
+  getcustomer(value) {
+    return this.http.post(this.baseUrl + '/user/userDetails', { phone: value.phone })
+
+  }
+
+
 
 }
