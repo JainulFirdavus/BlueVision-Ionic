@@ -61,9 +61,19 @@ export class AppComponent implements OnInit {
             url: '/orders'
           },
           {
+            name: 'Information',
+            icon: 'flame-outline',
+            url: '/customerinformation'
+          },
+          {
             name: 'Visit',
             icon: 'bicycle-outline',
             url: '/customervisit'
+          },
+          {
+            name: 'Settings',
+            icon: 'settings-outline',
+            url: '/settings'
           },
           {
             name: 'Logout',

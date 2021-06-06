@@ -67,35 +67,15 @@
                     <th>Balance</th>
                     <th>Status</th>
                 </tr>
-                <tr>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
-                    <td>50</td>
+                <tr *ngFor="let order of orderList">
+                    <td>{{order.order_id}}</td>
+                    <td>{{order.created | date:'fullDate'}}</td>
+                    <td>{{order.users.name}}</td>
+                    <td>{{order.grand_total}}</td>
+                    <td>{{order.discount}}</td>
+                    <td>{{order.advance}}</td>
+                    <td>{{order.balance}}</td>
+                    <td>{{order.status}}</td>
                 </tr>
             </table>
         </div>

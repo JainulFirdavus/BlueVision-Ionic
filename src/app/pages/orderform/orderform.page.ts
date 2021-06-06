@@ -18,7 +18,10 @@ export class OrderformPage implements OnInit {
   orderForm: FormGroup;
   submitted: boolean = false;
 
+  empolyee_id = JSON.parse(localStorage.getItem('token')).user_id ? JSON.parse(localStorage.getItem('token')).user_id : ''
+
   baseUrl = environment.baseUrl;
+
   validation_messages = {
     'order_date': [
       { type: 'required', message: 'Order Date is required.' },
@@ -35,10 +38,12 @@ export class OrderformPage implements OnInit {
     'customer_gender': [{ type: 'required', message: 'Gender  is required.' }],
     'lens_type': [{ type: 'required', message: 'Len Type  is required.' }],
     'tint': [{ type: 'required', message: 'Tint is required.' }],
+    'tint_discount': [{ type: 'required', message: 'Tint Discount is required.' }],
     'lens_tax': [{ type: 'required', message: 'Lens Tax is required.' }, { type: 'pattern', message: 'Your Price must contain only numbers .' }],
     'frame_type': [{ type: 'required', message: 'Frame Type  is required.' }],
     'frame_price': [{ type: 'required', message: 'Frame Price  is required.' }, { type: 'pattern', message: 'Your Price must contain only numbers .' }],
     'frame_brand': [{ type: 'required', message: 'Frame Brand  is required.' }],
+    'frame_discount': [{ type: 'required', message: 'Frame Discount  is required.' }],
     'frame_tax': [{ type: 'required', message: 'Frame Tax  is required.' }],
     'total_amount': [{ type: 'required', message: 'Total  is required.' }, { type: 'pattern', message: 'Your Total must contain only numbers .' }],
     'discount': [{ type: 'required', message: 'Discount  is required.' }, { type: 'pattern', message: 'Your Discount must contain only numbers .' }],
@@ -50,9 +55,12 @@ export class OrderformPage implements OnInit {
   }
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private auth: HttpClient) { }
   ngOnInit() {
+
+    console.log(JSON.parse(localStorage.getItem('token')));
+
     this.orderForm = this.formBuilder.group({
       order_id: [''/* { value: '', disabled: true } */, Validators.required],
-      // userId: ['', Validators.required],
+      userId: [''],
       order_date: ['', Validators.required],
       created: ['', Validators.required],
       delivery_date: ['', Validators.required],
@@ -64,12 +72,13 @@ export class OrderformPage implements OnInit {
       lens_type: ['', Validators.required],
       lens_price: ['', Validators.required],
       tint: ['', Validators.required],
+      tint_discount: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       lens_tax: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       frame_type: ['', Validators.required],
       frame_price: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       frame_brand: ['', Validators.required],
       frame_tax: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-
+      frame_discount: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       frame_details: this.formBuilder.group({
         right: this.formBuilder.group({
           dv_sph: ['', Validators.required],
@@ -98,18 +107,24 @@ export class OrderformPage implements OnInit {
       grand_total: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       next_visit: ['', Validators.required],
       refered_by: [''],
-      empolyee_id: ['', Validators.required],
+      empolyee_id: [this.empolyee_id, Validators.required],
       delivery_status: ['', Validators.required],
     })
 
+    /* if (localStorage.getItem('order')) { // testing
+      this.orderForm.patchValue(JSON.parse(localStorage.getItem('order')))
+    } */
+
 
     this.http.get(this.baseUrl + '/order/lastorder', {}).subscribe(data => {
-      console.log(data)
+      console.log('2', data)
       if (data['response'] && data['response'].order_id) {
+        this.ramdon_id = 'BL-' + (Number(data['response'].order_id.split('-')[1]) + 1);
         this.orderForm.patchValue({
-          order_id: 'BL-' + (Number(data['response'].order_id.split('-')[1]) + 1)
+          order_id: this.ramdon_id
         })
       } else {
+        this.ramdon_id = 'BL-1001';
         this.orderForm.patchValue({
           order_id: 'BL-1001'
         })
@@ -127,6 +142,7 @@ export class OrderformPage implements OnInit {
       if (data['response'] && data['status'] == 1) {
         console.log(data['response']);
         this.orderForm.patchValue({
+          userId: data['response']._id,
           customer_name: data['response'].name,
           customer_address: data['response'].address,
           customer_age: data['response'].age,
@@ -138,13 +154,21 @@ export class OrderformPage implements OnInit {
 
   onSubmit() {
     console.log(this.orderForm.value)
-
     this.submitted = true;
     if (!this.orderForm.invalid) {
       return;
     } else {
+      this.orderForm.patchValue({
+        created: Date.now()
+      })
       this.http.post(this.baseUrl + '/order/save', this.orderForm.value).subscribe((result) => {
         console.log(result);
+        if (result['status'] == 0) {
+          // localStorage.setItem('order', JSON.stringify(this.orderForm.value)); // testing
+        } else {
+          localStorage.removeItem('order');
+          this.router.navigate(['/orders']);
+        }
       })
     }
   }

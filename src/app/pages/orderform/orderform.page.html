@@ -8,7 +8,7 @@
 
 <ion-content>
     <div>
-        <h2>Order Form</h2>
+        <h2>Order - {{ramdon_id}}</h2>
     </div>
 
     <!-- <app-dynamic-form [questions]="questions$ | async"></app-dynamic-form> -->
@@ -18,15 +18,11 @@
     <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
         <div class="orders">
             <div class="form ion-text-center">
-                <ion-item class="orderform" lines='none'>
+                <!--  <ion-item class="orderform" lines='none'>
                     <ion-label position="floating">Order Number
                     </ion-label>
                     <ion-input placeholder='BV-00001' type="text" formControlName="order_id"></ion-input>
-                </ion-item>
-
-
-
-
+                </ion-item> -->
                 <ion-grid>
                     <ion-row>
                         <ion-col size=5>
@@ -108,14 +104,14 @@
                             <ion-item class="select" lines='none'
                                 [ngClass]="{ 'is-invalid': submitted && f.customer_gender.errors }">
                                 <ion-label position="floating">Gender</ion-label>
-                                 <ion-select formControlName="customer_gender">
+                                <ion-select formControlName="customer_gender">
                                     <ion-select-option
                                         *ngFor="let val of  [{value:'Male', label:'Male'},{value:'Female', label: 'Female'},{value:'Other', label: 'Other'}]"
                                         [value]="val.value">
                                         {{val.label}}
                                     </ion-select-option>
                                 </ion-select>
-                               <!--  <ion-select formControlName="customer_gender">
+                                <!--  <ion-select formControlName="customer_gender">
                                     <ion-select-option value="Male">Male</ion-select-option>
                                     <ion-select-option value="Female">Female</ion-select-option>
                                     <ion-select-option value="Other">Other</ion-select-option>
@@ -158,7 +154,12 @@
                                 <ion-input formControlName="tint"></ion-input>
                             </ion-item>
                         </ion-col>
-                        <ion-col size=4></ion-col>
+                        <ion-col size=4>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.tint_discount.errors }">
+                                <ion-label position="floating">Tint Discount</ion-label>
+                                <ion-input type="number" formControlName="tint_discount"></ion-input>
+                            </ion-item>
+                        </ion-col>
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.lens_tax.errors }">
                                 <ion-label position="floating">TAX/GST%</ion-label>
@@ -183,7 +184,7 @@
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_price.errors }">
                                 <ion-label position="floating">Frame Price</ion-label>
-                                <ion-input formControlName="frame_price"></ion-input>
+                                <ion-input type="number" formControlName="frame_price"></ion-input>
                             </ion-item>
                         </ion-col>
                     </ion-row>
@@ -194,8 +195,13 @@
                                 <ion-input formControlName="frame_brand"></ion-input>
                             </ion-item>
                         </ion-col>
-                        <ion-col></ion-col>
-                        <ion-col size=2></ion-col>
+                        <ion-col size=4>
+                            <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_discount.errors }">
+                                <ion-label position="floating">Frame Discount</ion-label>
+                                <ion-input type="number" formControlName="frame_discount"></ion-input>
+                            </ion-item>
+
+                        </ion-col>
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_tax.errors }">
                                 <ion-label position="floating">TAX/GST%</ion-label>
@@ -352,7 +358,7 @@
                     <ion-row>
                         <ion-col size=6>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.grand_total.errors }">
-                                <ion-label position="floating">Order Taken By</ion-label>
+                                <ion-label position="floating">Grand Total</ion-label>
                                 <ion-input type="number" formControlName="grand_total"></ion-input>
                             </ion-item>
                         </ion-col>

@@ -56,7 +56,7 @@ export class AuthProvider {
           return res
         } else {
           console.log("res", res);
-          localStorage.setItem("token", JSON.stringify({ token: res.response.token, role: res.response.role, user_id: res.response._id, }));
+          localStorage.setItem("token", JSON.stringify({ token: res.response.token, role: res.response.role, user_id: res.response.user_id }));
           return res
         }
       }),
