@@ -40,9 +40,18 @@ export class PageService {
     public customerDetails(data): any {
         console.log(data);
         return this.http.post(this.baseUrl + '/user/userDetails', data)
-
-
     }
+
+    public userorderList(data): any {
+        console.log(data);
+        return this.http.post(this.baseUrl + '/order/userorderList', data)
+    }
+
+
+    public getDeatils(data): any {
+        return this.http.post(this.baseUrl + '/employee/getDeatils', data)
+    }
+
     public customerVisit(data): any {
         console.log(data);
         return this.http.post(this.baseUrl + '/user/customerVisit', data)

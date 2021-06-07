@@ -27,20 +27,31 @@ export class CustomervisitPage implements OnInit {
   }
 
   ngOnInit() {
+    /* this.auth.customerVisit({ date: "2021-08-08T02:37:36.836+05:30" }).subscribe((res) => {
+      if (res.status != 0) {
+        this.userList = res.response[0].documentData;
+        console.log(this.userList);
+
+      } else {
+        this.presentToast('No Record')
+      }
+    }) */
   }
 
 
   submit() {
     this.submitted = true;
-    console.log('All fields are required.')
     if (!this.getuser.valid) {
-      console.log('All fields are required.')
+      this.presentToast('Date Required')
       return false;
     } else {
-      console.log(this.getuser.value)
-      this.auth.customerVisit(this.getuser.value).subscribe((response) => {
-        console.log(response);
-        this.userList = response;
+      this.auth.customerVisit(this.getuser.value).subscribe((res) => {
+        if (res.status != 0) {
+          this.userList = res.response[0].documentData;
+
+        } else {
+          this.presentToast('No Record')
+        }
       })
     }
   }

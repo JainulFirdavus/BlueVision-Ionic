@@ -29,20 +29,31 @@ export class CustomerinformationPage implements OnInit {
   }
 
   ngOnInit() {
+    /*  this.auth.customerDetails({ phone: '9597070570' }).subscribe((res) => {
+       console.log(res);
+       this.userList = res.response;
+ 
+     }) */
   }
 
 
   submit() {
     this.submitted = true;
-    console.log('All fields are required.')
     if (!this.getuser.valid) {
-      console.log('All fields are required.')
+      this.presentToast('Phone Number required.')
       return false;
     } else {
       console.log(this.getuser.value)
-      this.auth.customerDetails(this.getuser.value).subscribe((response) => {
-        console.log(response);
-        this.userList = response;
+      this.auth.userorderList(this.getuser.value).subscribe((res) => {
+        console.log(res);
+
+        if (res.status == 0) {
+          this.presentToast('No Record')
+        } else {
+
+          this.userList = res.response;
+        }
+
       })
     }
   }

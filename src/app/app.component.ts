@@ -43,6 +43,11 @@ export class AppComponent implements OnInit {
             url: '/Report'
           },
           {
+            name: 'Create Account',
+            icon: 'bicycle-outline',
+            url: '/createaccount'
+          },
+          {
             name: 'Settings',
             icon: 'settings-outline',
             url: '/settings'

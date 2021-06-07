@@ -49,5 +49,31 @@ h2 {
 }
 
 .form {
-    margin-top: 35%;
+    margin-top: 20%;
+}
+
+
+.tablename {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    background: #dcdcdc;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+th {
+    text-align: left;
+    padding: 10px 10px;
+    white-space: nowrap;
+    font-size: 15px;
+}
+
+td {
+    text-align: center;
+    padding: 10px 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }

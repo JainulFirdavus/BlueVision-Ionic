@@ -7,52 +7,58 @@
     <ion-icon slot="start" name="arrow-back"></ion-icon>
 </ion-toolbar>
 <ion-content>
-    <div>
-        <h2>Customer Information</h2>
-    </div>
+
+    <h2>Customer Information</h2>
+
     <form [formGroup]="getuser" (ngSubmit)="submit()">
-        <div class="orders">
-            <div class="form ion-text-center">
-                <!--   <ion-item lines='none'>
-            <ion-label position="floating">Name</ion-label>
-            <ion-input></ion-input>
-        </ion-item> -->
-
-                <ion-item lines='none'>
-                    <ion-label position="floating">Phone No</ion-label>
-                    <ion-input inputmode="text" formControlName="phone" required></ion-input>
-
-                </ion-item>
-                <ion-button class="cancelbtn" type="submit" size="medium">Submit</ion-button>
-            </div>
-            <div class="tablename" style="overflow-x:auto;" *ngIf="userList">
-                {{userList | json}}
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone On</th>
-                        <th>address</th>
-                        <th>Last Visit</th>
-                        <th>Next Visit</th>
-                        <th>Next Visit</th>
-                      <!--   <th>Advance</th> -->
-
-                    </tr>
-                    <tr>
-                        <td>{{userList.name}}</td>
-                        <td>{{userList.phone}}</td>
-                        <td>{{userList.address}}</td>
-
-                       <!--  <td>{{userList.upcomming_visit.vistedDate | date:'fullDate'}}</td>
-                        <td>{{userList.visitng[0].last_visit | date:'fullDate'}}</td>
-                        <td>{{userList.upcomming_visit[0].next_visit | date:'fullDate'}}</td> -->
-                        <!--    <td>{{userList.grand_total}}</td>
-                        <td>{{userList.discount}}</td> -->
-
-                    </tr>
-                </table>
-            </div>
-
+        <div class="form ion-text-center">
+            <ion-item lines='none'>
+                <ion-label position="floating">Phone No</ion-label>
+                <ion-input inputmode="text" formControlName="phone" required></ion-input>
+            </ion-item>
+            <ion-button class="cancelbtn" type="submit" size="medium">Submit</ion-button>
         </div>
+
     </form>
+    <div class="tablename" style="overflow-x:auto;" *ngIf="userList">
+        <!-- {{userList | json}} -->
+        <table>
+            <tr>
+                <th>order Date</th>
+                <th>order Id</th>
+                <th>Name</th>
+                <th>Phone On</th>
+                <th>address</th>
+                <th>Next Visit</th>
+                <th>Total</th>
+                <th>Status</th>
+                <!--   <th>Advance</th> -->
+
+            </tr>
+            <!-- {{userList |json}} -->
+            <tr *ngFor="let user of userList">
+                <td>{{user.order_date| date:'fullDate'}}</td>
+                <td>{{user.order_id}}</td>
+                <td>{{user.customer_name}}</td>
+                <td>{{user.customer_phone}}</td>
+                <td>{{user.customer_address}}</td>
+                <td>{{user.next_visit | date:'fullDate'}}</td>
+                <td>{{user.grand_total}}</td>
+                <td>{{user.status}}</td>
+
+                <!--  <td>{{userList.upcomming_visit.vistedDate | date:'fullDate'}}</td>
+                    <td>{{userList.visitng[0].last_visit | date:'fullDate'}}</td>
+                    <td>{{userList.upcomming_visit[0].next_visit | date:'fullDate'}}</td> -->
+                <!--    <td>{{userList.grand_total}}</td>
+                    <td>{{userList.discount}}</td> -->
+
+            </tr>
+        </table>
+
+        <!-- <div *ngIf="userList">
+            <h4>No Recorrd Found</h4>
+        </div>
+ -->
+
+    </div>
 </ion-content>

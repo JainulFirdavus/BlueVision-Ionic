@@ -108,7 +108,7 @@ export class HomePage implements OnInit {
           if (response.response.role == 'admin') {
             this.router.navigate(['/dashboard']);
           } else {
-            this.router.navigate(['/orderform']);
+            this.router.navigate(['/orders']);
           }
         } else {
           this.presentToast('invalid details')

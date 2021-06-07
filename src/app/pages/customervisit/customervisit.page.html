@@ -19,5 +19,26 @@
             </ion-item>
             <ion-button class="cancelbtn" type="submit" size="medium">Submit</ion-button>
         </div>
+
+
+        <div class="tablename" style="overflow-x:auto;" *ngIf="userList">
+            <table>
+                <tr>
+                    <th class="order">Customer Name</th>
+                    <th class="order">Phone</th>
+                    <th class="order">Visting Date</th>
+                    <th class="order">Last Purchase Date</th>
+                </tr>
+
+                <tr *ngFor="let users of userList">
+                    <td>{{users.customer_name}}</td>
+                      <td>{{users.customer_phone}}</td>
+                    <td>{{users.created | date:'fullDate'}}</td>
+                    <td>{{users.next_visit | date:'fullDate'}}</td>
+                </tr>
+            </table>
+        </div>
+
+
     </form>
 </ion-content>
