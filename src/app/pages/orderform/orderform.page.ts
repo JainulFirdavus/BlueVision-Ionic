@@ -56,7 +56,7 @@ export class OrderformPage implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private auth: HttpClient) { }
   ngOnInit() {
 
-    console.log(JSON.parse(localStorage.getItem('token')));
+    // console.log(JSON.parse(localStorage.getItem('token')));
 
     this.orderForm = this.formBuilder.group({
       order_id: [''/* { value: '', disabled: true } */, Validators.required],
@@ -152,6 +152,49 @@ export class OrderformPage implements OnInit {
     })
   }
 
+
+  updateCalc() {
+
+    let lens_price = parseFloat(this.orderForm.value.lens_price);
+    let lens_discount: number = parseFloat(this.orderForm.value.lens_price) * (parseFloat(this.orderForm.value.tint_discount) / 100)
+    let lens_tax = ((lens_price - lens_discount) * parseFloat(this.orderForm.value.lens_tax) / 100)
+    let lens_cal = (lens_price /* - lens_discount */) + lens_tax;
+
+    let frame_price = parseFloat(this.orderForm.value.frame_price);
+    let frame_discount: number = parseFloat(this.orderForm.value.frame_price) * (parseFloat(this.orderForm.value.frame_discount) / 100)
+    let frame_tax = ((frame_price - frame_discount) * parseFloat(this.orderForm.value.frame_tax) / 100)
+    let frame_cal = (frame_price /* - frame_discount */) + frame_tax;
+
+    this.orderForm.patchValue({
+      total_amount: lens_cal + frame_cal
+    })
+
+
+    // let advance = this.orderForm.value.advance
+
+    if (this.orderForm.value.total_amount > 0) {
+      this.orderForm.patchValue({
+        discount: frame_discount + lens_discount,
+        balance: ((lens_cal + frame_cal) - (lens_discount + frame_discount)) - this.orderForm.value.advance
+      })
+    }
+    /*  
+      frame_price
+      frame_tax
+      lens_tax
+      tint_discount
+      frame_discount
+  
+      total_amount
+  
+      discount
+   */
+
+
+  }
+
+
+
   onSubmit() {
     console.log(this.orderForm.value)
     this.submitted = true;
@@ -166,10 +209,16 @@ export class OrderformPage implements OnInit {
         if (result['status'] == 0) {
           // localStorage.setItem('order', JSON.stringify(this.orderForm.value)); // testing
         } else {
-          localStorage.removeItem('order');
+          // localStorage.removeItem('order');
           this.router.navigate(['/orders']);
+          this.orderForm.patchValue({})
         }
       })
     }
   }
+
+  
+
+
+
 }

@@ -66,16 +66,21 @@
                     <th>Advance</th>
                     <th>Balance</th>
                     <th>Status</th>
+                    <!-- <th>Action</th> -->
                 </tr>
                 <tr *ngFor="let order of orderList">
                     <td>{{order.order_id}}</td>
                     <td>{{order.created | date:'fullDate'}}</td>
                     <td>{{order.users.name}}</td>
-                    <td>{{order.grand_total}}</td>
+                    <td>{{order.total_amount}}</td>
                     <td>{{order.discount}}</td>
                     <td>{{order.advance}}</td>
                     <td>{{order.balance}}</td>
-                    <td>{{order.status}}</td>
+                    <td>{{order.delivery_status}}</td>
+                    <!--  <td>
+                        <ion-button class="export" (click)="getdetails(order._id)" size=small>click</ion-button>
+                    </td> -->
+
                 </tr>
             </table>
         </div>

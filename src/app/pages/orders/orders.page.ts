@@ -21,10 +21,22 @@ export class OrdersPage implements OnInit {
     this.http.post(this.baseUrl + '/order/getorders', {}).subscribe(data => {
       console.log('2', data)
       if (data['response'] && data['response']) {
-        this.orderList= data['response'].data
+        this.orderList = data['response'].data
       }
     })
   }
+
+
+
+  getdetails(value) {
+    this.http.post(this.baseUrl + '/order/getordeById', { _id: value }).subscribe(data => {
+      console.log('2', data)
+      if (data['response'] && data['response']) {
+        this.orderList = data['response'].data
+      }
+    })
+  }
+
 
 
 
