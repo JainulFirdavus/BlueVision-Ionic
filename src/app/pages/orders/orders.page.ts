@@ -18,6 +18,12 @@ export class OrdersPage implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private auth: HttpClient) { }
   ngOnInit() {
+
+    this.orderForm = this.formBuilder.group({
+      delivery_status: [''],
+      customer: [''], date: [''],
+    })
+
     this.http.post(this.baseUrl + '/order/getorders', {}).subscribe(data => {
       console.log('2', data)
       if (data['response'] && data['response']) {
@@ -25,6 +31,20 @@ export class OrdersPage implements OnInit {
       }
     })
   }
+
+
+  search() {
+    console.log('2', this.orderForm.value)
+
+    this.http.post(this.baseUrl + '/order/getorders', this.orderForm.value).subscribe(data => {
+      console.log('2', data)
+
+      if (data['response'] && data['response']) {
+        this.orderList = data['response'].data
+      }
+    })
+  }
+
 
 
 

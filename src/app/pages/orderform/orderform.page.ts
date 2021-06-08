@@ -169,28 +169,13 @@ export class OrderformPage implements OnInit {
       total_amount: lens_cal + frame_cal
     })
 
-
-    // let advance = this.orderForm.value.advance
-
     if (this.orderForm.value.total_amount > 0) {
       this.orderForm.patchValue({
         discount: frame_discount + lens_discount,
         balance: ((lens_cal + frame_cal) - (lens_discount + frame_discount)) - this.orderForm.value.advance
       })
     }
-    /*  
-      frame_price
-      frame_tax
-      lens_tax
-      tint_discount
-      frame_discount
-  
-      total_amount
-  
-      discount
-   */
-
-
+   
   }
 
 
