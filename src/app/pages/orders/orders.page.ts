@@ -35,10 +35,18 @@ export class OrdersPage implements OnInit {
 
   search() {
     console.log('2', this.orderForm.value)
-
     this.http.post(this.baseUrl + '/order/getorders', this.orderForm.value).subscribe(data => {
       console.log('2', data)
+      if (data['response'] && data['response']) {
+        this.orderList = data['response'].data
+      }
+    })
+  }
 
+  export() {
+    console.log('2', this.orderForm.value)
+    this.http.post(this.baseUrl + '/order/orderExport', this.orderForm.value).subscribe(data => {
+      console.log('2', data)
       if (data['response'] && data['response']) {
         this.orderList = data['response'].data
       }
@@ -49,15 +57,14 @@ export class OrdersPage implements OnInit {
 
 
   getdetails(value) {
-    this.http.post(this.baseUrl + '/order/getordeById', { _id: value }).subscribe(data => {
+    this.router.navigate(['/ordersdetails']);
+    /* this.http.post(this.baseUrl + '/order/getordeById', { _id: value }).subscribe(data => {
       console.log('2', data)
       if (data['response'] && data['response']) {
         this.orderList = data['response'].data
+
       }
-    })
+    }) */
   }
-
-
-
 
 }

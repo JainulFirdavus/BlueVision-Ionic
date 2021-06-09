@@ -33,7 +33,12 @@ const routes: Routes = [
     canActivate: [PagesGuard]
 
   },
+  {
+    path: 'ordersdetails',
+    loadChildren: () => import('./ordersdetails/ordersdetails.module').then(m => m.OrdersdetailsModule),
+    canActivate: [PagesGuard]
 
+  },
   {
     path: 'orderform',
     loadChildren: () => import('./orderform/orderform.module').then(m => m.OrderformPageModule),
