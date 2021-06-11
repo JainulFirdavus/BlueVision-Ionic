@@ -26,7 +26,12 @@ const routes: Routes = [
     canActivate: [PagesGuard]
 
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule),
+    canActivate: [PagesGuard]
 
+  },
   {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule),

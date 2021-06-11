@@ -11,33 +11,43 @@
         <h2>Update Info</h2>
     </div>
     <div class="orders"></div>
-    <form [formGroup]="settinguserForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
         <div class="form ion-text-center">
-            <!--  <ion-item class="orderform" lines='none'>
-                <ion-label position="floating">Branch Name</ion-label>
-                <ion-input></ion-input>
-            </ion-item> -->
-            <ion-item>
-                <ion-label position="floating">Address</ion-label>
-                <ion-textarea formControlName="address" rows="5"></ion-textarea>
-            </ion-item>
+
             <ion-item class="orderform" lines='none'>
-                <ion-label position="floating">Mobile Number</ion-label>
-                <ion-input formControlName="phone"></ion-input>
+                <ion-label position="floating">Title</ion-label>
+                <ion-input formControlName="title"></ion-input>
             </ion-item>
-            <ion-item class="orderform" lines='none'>
-                <ion-label position="floating">First Name</ion-label>
-                <ion-input formControlName="firstname"></ion-input>
-            </ion-item>
-            <ion-item class="orderform" lines='none'>
-                <ion-label position="floating">Last Name</ion-label>
-                <ion-input formControlName="lastname"></ion-input>
-            </ion-item>
+
             <ion-item class="orderform" lines='none'>
                 <ion-label position="floating">Email ID</ion-label>
                 <ion-input formControlName="email"></ion-input>
             </ion-item>
-            <ion-button class="cancelbtn" size="medium">save</ion-button>
+
+            <ion-item class="orderform" lines='none'>
+                <ion-label position="floating">Phone</ion-label>
+                <ion-input formControlName="phone"></ion-input>
+            </ion-item>
+
+            <!--      <ion-item class="orderform" lines='none'>
+                <ion-label position="floating">Email ID</ion-label>
+                <ion-input formControlName="email"></ion-input>
+            </ion-item>
+ -->
+
+           <!--  <ion-list-header>
+                Separate with comma
+            </ion-list-header>
+            <ion-tags-input formControlName="positions">
+            </ion-tags-input>
+ -->
+
+          <!--   reminder
+            postions
+            branchs -->
+
+
+            <ion-button class="cancelbtn" type="submit" size="medium">save</ion-button>
         </div>
     </form>
 

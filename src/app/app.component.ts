@@ -40,7 +40,12 @@ export class AppComponent implements OnInit {
           {
             name: 'Report',
             icon: 'ribbon-outline',
-            url: '/Report'
+            url: '/report'
+          },
+          {
+            name: 'My Profile',
+            icon: 'bicycle-outline',
+            url: '/profile'
           },
           {
             name: 'Create Account',
@@ -51,7 +56,8 @@ export class AppComponent implements OnInit {
             name: 'Settings',
             icon: 'settings-outline',
             url: '/settings'
-          }, {
+          },
+          {
             name: 'Logout',
             icon: 'settings-outline',
             url: 'logout'
@@ -76,9 +82,9 @@ export class AppComponent implements OnInit {
             url: '/customervisit'
           },
           {
-            name: 'Settings',
-            icon: 'settings-outline',
-            url: '/settings'
+            name: 'My Profile',
+            icon: 'bicycle-outline',
+            url: '/profile'
           },
           {
             name: 'Logout',

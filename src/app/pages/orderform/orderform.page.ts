@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-orderform',
@@ -53,7 +55,17 @@ export class OrderformPage implements OnInit {
     'delivery_status': [{ type: 'required', message: 'Delivery Status is required.' }],
 
   }
-  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private auth: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private auth: HttpClient, public toastController: ToastController) { }
+
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
   ngOnInit() {
 
     // console.log(JSON.parse(localStorage.getItem('token')));
@@ -109,6 +121,8 @@ export class OrderformPage implements OnInit {
       refered_by: [''],
       empolyee_id: [this.empolyee_id, Validators.required],
       delivery_status: ['', Validators.required],
+      paid_status: ['', Validators.required],
+
     })
 
     /* if (localStorage.getItem('order')) { // testing
@@ -117,7 +131,6 @@ export class OrderformPage implements OnInit {
 
 
     this.http.get(this.baseUrl + '/order/lastorder', {}).subscribe(data => {
-      console.log('2', data)
       if (data['response'] && data['response'].order_id) {
         this.ramdon_id = 'BL-' + (Number(data['response'].order_id.split('-')[1]) + 1);
         this.orderForm.patchValue({
@@ -175,15 +188,15 @@ export class OrderformPage implements OnInit {
         balance: ((lens_cal + frame_cal) - (lens_discount + frame_discount)) - this.orderForm.value.advance
       })
     }
-   
+
   }
 
 
 
   onSubmit() {
-    console.log(this.orderForm.value)
     this.submitted = true;
-    if (!this.orderForm.invalid) {
+    if (this.orderForm.invalid) {
+      this.presentToast('invalid details')
       return;
     } else {
       this.orderForm.patchValue({
@@ -192,6 +205,7 @@ export class OrderformPage implements OnInit {
       this.http.post(this.baseUrl + '/order/save', this.orderForm.value).subscribe((result) => {
         console.log(result);
         if (result['status'] == 0) {
+          this.presentToast('invalid details')
           // localStorage.setItem('order', JSON.stringify(this.orderForm.value)); // testing
         } else {
           // localStorage.removeItem('order');
@@ -202,7 +216,7 @@ export class OrderformPage implements OnInit {
     }
   }
 
-  
+
 
 
 

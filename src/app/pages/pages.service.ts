@@ -32,7 +32,7 @@ export class PageService {
             }
             return !this.jwtHelper.isTokenExpired(user['token']);
         } else {
-            return true
+            return false
         }
     }
 
@@ -55,15 +55,23 @@ export class PageService {
     public customerVisit(data): any {
         console.log(data);
         return this.http.post(this.baseUrl + '/user/customerVisit', data)
-
-
     }
 
 
+    public updateemployee(data): any {
+        console.log(data);
+        return this.http.post(this.baseUrl + '/employee/update', data)
+    }
 
 
+    public getsettings(): any {
+        return this.http.post(this.baseUrl + '/admin/getsettings', {})
+    }
 
-
+    public savesettings(data): any {
+        console.log(data);
+        return this.http.post(this.baseUrl + '/admin/savesettings', data)
+    }
 
 }
 

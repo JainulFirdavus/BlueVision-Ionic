@@ -1,8 +1,126 @@
 <ion-toolbar>
-
   <ion-title>Blue Vision</ion-title>
-
-  <ion-icon slot="end" name="add-circle-outline" routerLink="/orderform" routerDirection="root"></ion-icon>
-
-
+  <ion-buttons slot="end">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-icon slot="start" name="arrow-back"></ion-icon>
 </ion-toolbar>
+
+<ion-content>
+  <div>
+    <h2>Order - {{order_id}} </h2>
+  </div>
+  <div class="orders"></div>
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+
+    <div class="form ion-text-center">
+      <!-- <ion-item class="orderform" lines='none'>
+        <ion-label position="floating">Order Number</ion-label>
+        <ion-input placeholder='DG-00001'></ion-input>
+      </ion-item> -->
+      <ion-grid>
+        <ion-row>
+          <ion-col size=5>
+            <ion-item lines='none'>
+              <ion-label position="floating">Order Date</ion-label>
+              <ion-datetime formControlName="order_date"></ion-datetime>
+            </ion-item>
+          </ion-col>
+          <ion-col size=2>
+          </ion-col>
+          <ion-col size=5>
+            <ion-item lines='none'>
+              <ion-label position="floating">Delivery Date</ion-label>
+              <ion-datetime formControlName="delivery_date"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=12>
+            <ion-item lines='none'>
+              <ion-label position="floating">Name</ion-label>
+              <ion-input formControlName="customer_name"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=8>
+            <ion-item lines='none'>
+              <ion-label position="floating">Phone</ion-label>
+              <ion-input formControlName="customer_phone" placeholder='+91 1234567890'></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=12>
+            <ion-item>
+              <ion-label position="floating">Address</ion-label>
+              <ion-textarea formControlName="customer_address"></ion-textarea>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=4>
+            <ion-item class="amount" lines='none'>
+              <ion-label position="floating">Total Amount</ion-label>
+              <ion-input placeholder="0" formControlName="total_amount"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size=5>
+            <ion-item lines='none'>
+              <ion-label position="floating">Discount Value</ion-label>
+              <ion-input placeholder="0" formControlName="discount"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size=3>
+            <ion-item lines='none'>
+              <ion-label position="floating">Advance</ion-label>
+              <ion-input placeholder="0" formControlName="advance" (ngModelChange)="updateCalc()"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=4>
+            <ion-item class="amount" lines='none'>
+              <ion-label position="floating">Balance</ion-label>
+              <ion-input placeholder="0" formControlName="balance"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size=3>
+            <ion-item class="amount" lines='none'>
+              <ion-label position="floating">Paid</ion-label>
+              <ion-select formControlName="paid_status">
+                <ion-select-option value="Paid">Paid</ion-select-option>
+                <ion-select-option value="Not">Not</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <!-- <ion-col size=2></ion-col> -->
+          <ion-col size=5>
+            <ion-item class="select" lines='none'>
+              <ion-label position="floating">Delivered Status</ion-label>
+              <ion-select formControlName="delivery_status">
+                <ion-select-option value="CR">pending</ion-select-option>
+                <ion-select-option value="GL">Fitting</ion-select-option>
+                <ion-select-option value="HC">Ready to Deliver</ion-select-option>
+                <ion-select-option value="ARC">Delivered</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size=3>
+            <ion-button class="cancelbtn" size="medium">Cancel</ion-button>
+          </ion-col>
+          <ion-col size=2></ion-col>
+          <ion-col size=7>
+            <ion-button class="savebtn" size="medium">Save & Print</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+
+    </div>
+  </form>
+</ion-content>

@@ -1,5 +1,7 @@
 {
   "name": "BlueVision",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
