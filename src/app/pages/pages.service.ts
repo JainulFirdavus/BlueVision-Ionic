@@ -23,10 +23,9 @@ export class PageService {
 
 
     public isAuthenticated(): boolean {
-        console.log(localStorage.getItem('token'));
+
         if (localStorage.getItem('token')) {
             const user = JSON.parse(localStorage.getItem('token'));
-            console.log(user['token'], this.jwtHelper.isTokenExpired(user['token']));
             if (this.jwtHelper.isTokenExpired(user['token'])) {
                 localStorage.removeItem('token')
             }
@@ -38,12 +37,12 @@ export class PageService {
 
 
     public customerDetails(data): any {
-        console.log(data);
+
         return this.http.post(this.baseUrl + '/user/userDetails', data)
     }
 
     public userorderList(data): any {
-        console.log(data);
+
         return this.http.post(this.baseUrl + '/order/userorderList', data)
     }
 
@@ -53,13 +52,13 @@ export class PageService {
     }
 
     public customerVisit(data): any {
-        console.log(data);
+
         return this.http.post(this.baseUrl + '/user/customerVisit', data)
     }
 
 
     public updateemployee(data): any {
-        console.log(data);
+
         return this.http.post(this.baseUrl + '/employee/update', data)
     }
 
@@ -69,7 +68,7 @@ export class PageService {
     }
 
     public savesettings(data): any {
-        console.log(data);
+
         return this.http.post(this.baseUrl + '/admin/savesettings', data)
     }
 

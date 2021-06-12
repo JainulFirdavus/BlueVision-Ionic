@@ -4,11 +4,10 @@
 
     <ion-icon slot="end" name="add-circle-outline" routerLink="/orderform" routerDirection="root"></ion-icon>
 
-
     <ion-buttons slot="end">
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-icon slot="start" name="arrow-back"></ion-icon>
+    <!-- <ion-icon slot="start" name="arrow-back"></ion-icon> -->
 </ion-toolbar>
 
 <ion-content>
@@ -81,7 +80,7 @@
                     <td>{{order.advance}}</td>
                     <td>{{order.balance}}</td>
                     <td>{{order.delivery_status}}</td>
-                     <td>
+                    <td>
                         <ion-button class="export" (click)="getdetails(order._id)" size=small>click</ion-button>
                     </td>
 

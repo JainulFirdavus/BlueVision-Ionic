@@ -30,10 +30,9 @@ export class DashboardPage implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private auth: HttpClient) { }
 
   ngOnInit() {
-    console.log('2')
 
     this.http.post(this.baseUrl + '/admin/dashboard', {}).subscribe(data => {
-      console.log('2', data)
+
       if (data['response'] && data['response']) {
         this.todayOrder = data['response'].today
         this.totalOrder = data['response'].total
@@ -50,6 +49,10 @@ export class DashboardPage implements OnInit {
         this.totalcount = this.totalOrder[0] ? this.totalOrder[0]['count'] : 0
       }
     })
+  }
+
+  getmenu() {
+    console.log("getmenu");
   }
 
 }

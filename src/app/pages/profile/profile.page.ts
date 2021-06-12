@@ -38,7 +38,6 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.auth.getDeatils({ _id: JSON.parse(localStorage.getItem('token')).user_id }).subscribe((response) => {
       if (response['status'] != 0) {
-        console.log(response);
         this.settinguserForm.patchValue(response['response'])
       } else {
         this.presentToast('No Record')
@@ -47,8 +46,6 @@ export class ProfilePage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.settinguserForm.value)
-    this.submitted = true;
     if (this.settinguserForm.invalid) {
       this.presentToast('invalid')
       return;
@@ -57,11 +54,12 @@ export class ProfilePage implements OnInit {
         created: Date.now()
       })
       this.auth.updateemployee(this.settinguserForm.value).subscribe((response) => {
-        console.log(response);
         if (response['status'] == 0) {
+          this.presentToast('invalid')
           // localStorage.setItem('order', JSON.stringify(this.orderForm.value)); // testing
         } else {
-
+          this.presentToast('Updated Succefully')
+          this.router.navigate(['/orders']);
           // localStorage.removeItem('order');
           // this.router.navigate(['/orders']);
           // this.settinguserForm.patchValue({})

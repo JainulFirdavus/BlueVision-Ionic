@@ -1,19 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { HttpClient, HttpErrorResponse, } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 import { ToastController } from '@ionic/angular';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { Router } from '@angular/router';
-// import { ToastrService } from 'ngx-toastr';
-import { AuthProvider } from '../providers/auth';
 
 @Component({
-  selector: 'app-createaccount',
-  templateUrl: './createaccount.page.html',
-  styleUrls: ['./createaccount.page.scss'],
+  selector: 'app-newemployee',
+  templateUrl: './newemployee.component.html',
+  styleUrls: ['./newemployee.component.scss'],
 })
+export class NewemployeeComponent implements OnInit {
+  id: any;
+  baseUrl = environment.baseUrl;
+  employeeForm: any;
+  submitted: boolean = false;
 
-export class CreateaccountPage {
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private route: ActivatedRoute,
+    public toastController: ToastController) {
 
-  registerForm: FormGroup;
+  }
+
   public errorMessages = {
     password: [
       { type: 'required', message: 'Password is required' },
@@ -39,9 +47,11 @@ export class CreateaccountPage {
     ],
   }
 
-  constructor(public formBuilder: FormBuilder, private auth: AuthProvider, private router: Router, public toastController: ToastController) {
 
-    this.registerForm = this.formBuilder.group({
+  ngOnInit() {
+
+
+    this.employeeForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
       phone: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10)]],
@@ -50,53 +60,43 @@ export class CreateaccountPage {
       // confirmpass: ['', [Validators.required, Validators.minLength(4)]],
 
     })
-
   }
-  /*  pwdMatchValidator(frm: FormGroup) {
-     return frm.get('password').value === frm.get('confirmpass').value
-       ? null : { 'mismatch': true };
-   } */
+
   get password() {
-    return this.registerForm.get("password");
+    return this.employeeForm.get("password");
   }
   /*  get confirmpass() {
-     return this.registerForm.get("confirmpass");
+     return this.employeeForm.get("confirmpass");
    } */
   get email() {
-    return this.registerForm.get("email");
+    return this.employeeForm.get("email");
   }
   get phone() {
-    return this.registerForm.get("phone");
+    return this.employeeForm.get("phone");
   }
   get username() {
-    return this.registerForm.get("username");
+    return this.employeeForm.get("username");
   }
 
   get role() {
-    return this.registerForm.get("role");
+    return this.employeeForm.get("role");
   }
 
-  submit() { 
-    if (!this.registerForm.valid) { 
-      return false;
-    } else { 
+  onSubmit() {
 
-      this.auth.register(this.registerForm.value).subscribe((response) => {
-        if (response['response'].status == 1) {
-          this.router.navigate(['/home']);
-        } else { 
-          this.toastController.create({
-            message: 'invalid credentials',
-            duration: 2000
-          });
-        }
-      });
-    }
+    this.http.post(this.baseUrl + '/employee/register', this.employeeForm.value).subscribe(response => {
+      if (response['response'].status == 1) {
+        // this.router.navigate(['/home']);
+        this.employeeForm.patchValue({
+
+        })
+        this.router.navigate(['/dashboard']);
+      } else { 
+        this.toastController.create({
+          message: 'invalid credentials',
+          // duration: 2000
+        });
+      }
+    });
   }
-
-
-
 }
-
-
-

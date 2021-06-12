@@ -68,8 +68,6 @@ export class OrderformPage implements OnInit {
 
   ngOnInit() {
 
-    // console.log(JSON.parse(localStorage.getItem('token')));
-
     this.orderForm = this.formBuilder.group({
       order_id: [''/* { value: '', disabled: true } */, Validators.required],
       userId: [''],
@@ -153,7 +151,6 @@ export class OrderformPage implements OnInit {
   getuser() {
     this.http.post(this.baseUrl + '/user/userDetails', { phone: this.orderForm.value['customer_phone'] }).subscribe(data => {
       if (data['response'] && data['status'] == 1) {
-        console.log(data['response']);
         this.orderForm.patchValue({
           userId: data['response']._id,
           customer_name: data['response'].name,
@@ -202,8 +199,7 @@ export class OrderformPage implements OnInit {
       this.orderForm.patchValue({
         created: Date.now()
       })
-      this.http.post(this.baseUrl + '/order/save', this.orderForm.value).subscribe((result) => {
-        console.log(result);
+      this.http.post(this.baseUrl + '/order/save', this.orderForm.value).subscribe((result) => { 
         if (result['status'] == 0) {
           this.presentToast('invalid details')
           // localStorage.setItem('order', JSON.stringify(this.orderForm.value)); // testing

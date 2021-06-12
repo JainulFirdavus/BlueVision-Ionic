@@ -13,7 +13,12 @@ const routes: Routes = [
     canActivate: [PagesGuard]
 
   },
+  {
+    path: 'newemployee',
+    loadChildren: () => import('./newemployee/newemployee.module').then(m => m.newEmployeePageModule),
+    canActivate: [PagesGuard]
 
+  },
   {
     path: 'customerinformation',
     loadChildren: () => import('./customerinformation/customerinformation.module').then(m => m.CustomerinformationPageModule),

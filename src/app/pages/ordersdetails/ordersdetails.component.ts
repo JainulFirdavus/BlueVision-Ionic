@@ -45,11 +45,9 @@ export class OrdersdetailsComponent implements OnInit {
       paid_status: ['', Validators.required],
     })
 
-
-    console.log(this.id);
+ 
     this.http.post(this.baseUrl + '/order/getordeById', { _id: this.id }).subscribe(data => {
-      if (data['response']) {
-        console.log("---", data['response']);
+      if (data['response']) { 
         this.order_id = data['response'].order_id;
         this.orderForm.patchValue({
           advance: data['response'].advance,
@@ -81,9 +79,9 @@ export class OrdersdetailsComponent implements OnInit {
 
 
   submit() {
-    this.http.post(this.baseUrl + '/order/getorders', {}).subscribe(data => {
-      console.log('2', data)
+    this.http.post(this.baseUrl + '/order/getorders', this.orderForm.value).subscribe(data => { 
       if (data['response'] && data['response']) {
+        this.router.navigate(['/orders']);
       }
     })
   }

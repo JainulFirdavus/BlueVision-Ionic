@@ -30,7 +30,7 @@ export class CustomervisitPage implements OnInit {
     /* this.auth.customerVisit({ date: "2021-08-08T02:37:36.836+05:30" }).subscribe((res) => {
       if (res.status != 0) {
         this.userList = res.response[0].documentData;
-        console.log(this.userList);
+       
 
       } else {
         this.presentToast('No Record')
@@ -46,14 +46,18 @@ export class CustomervisitPage implements OnInit {
       return false;
     } else {
       this.auth.customerVisit(this.getuser.value).subscribe((res) => {
-        if (res.status != 0) {
-          this.userList = res.response[0].documentData;
 
+        if (res.status != 0) {
+          let data = res.response[0] ? res.response[0].documentData : [];
+          if (data.length > 0) {
+            this.userList = data;
+          } else {
+            this.presentToast('No Record')
+          }
         } else {
           this.presentToast('No Record')
         }
       })
     }
   }
-
 }

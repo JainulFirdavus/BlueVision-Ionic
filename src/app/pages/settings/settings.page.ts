@@ -34,14 +34,12 @@ export class SettingsPage implements OnInit {
   }
   ngOnInit() {
     this.auth.getsettings().subscribe((response) => {
-      if (response['status'] != 0) {
-        console.log(response);
+      if (response['status'] != 0) { 
         this.settingForm.patchValue(response['response'])
       }
     })
   }
-  onSubmit() {
-    console.log(this.settingForm.value)
+  onSubmit() { 
     this.submitted = true;
     if (this.settingForm.invalid) {
       this.presentToast('invalid')
@@ -50,8 +48,7 @@ export class SettingsPage implements OnInit {
       this.settingForm.patchValue({
         created: Date.now()
       })
-      this.auth.savesettings(this.settingForm.value).subscribe((response) => {
-        console.log(response);
+      this.auth.savesettings(this.settingForm.value).subscribe((response) => { 
         if (response['status'] == 0) {
           // localStorage.setItem('order', JSON.stringify(this.orderForm.value)); // testing
         } else {

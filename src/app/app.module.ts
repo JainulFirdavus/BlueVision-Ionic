@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 import { PageService } from './pages/pages.service';
 import { AuthProvider } from './providers/auth';
+import { AppService } from './app.service';
 
 
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
@@ -26,7 +27,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
         }
       }
     })],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, PageService, AuthProvider],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, PageService, AuthProvider, AppService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

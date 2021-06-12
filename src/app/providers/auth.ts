@@ -48,14 +48,12 @@ export class AuthProvider {
 
   }
 
-  login(value) {
-    console.log("value", value, this.baseUrl);
+  login(value) { 
     return this.http.post(this.baseUrl + '/employee/login', { email: value.email, password: value.password }).pipe(
       map((res: any) => {
         if (res.status == 0) {
           return res
-        } else {
-          console.log("res", res);
+        } else { 
           localStorage.setItem("token", JSON.stringify({ token: res.response.token, role: res.response.role, user_id: res.response.user_id }));
           return res
         }
@@ -70,8 +68,7 @@ export class AuthProvider {
     return this.http.post(this.baseUrl + '/employee/logut', {})
   }
 
-  register(value) {
-    console.log("value", value, this.baseUrl);
+  register(value) { 
     return this.http.post(this.baseUrl + '/employee/register', { username: value.username, email: value.email, password: value.password, phone: value.phone, role: value.role, createdBy: value.user, date: Date.now() })
   }
 

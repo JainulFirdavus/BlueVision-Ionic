@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 
+import { AppService } from '../app.service';
 import { AuthProvider } from '../providers/auth';
 
 @Component({
@@ -12,6 +13,8 @@ import { AuthProvider } from '../providers/auth';
 })
 
 export class HomePage implements OnInit {
+  @Input('parentData') public name;
+  @Output() public childEvent = new EventEmitter();
   loginForm: FormGroup;
   submitted = false;
   public errorMessages = {
@@ -57,7 +60,7 @@ export class HomePage implements OnInit {
        }
      ] */
   };
-  constructor(public formBuilder: FormBuilder, private auth: AuthProvider, private router: Router, public toastController: ToastController) {
+  constructor(public formBuilder: FormBuilder, private auth: AuthProvider, private router: Router, public toastController: ToastController, public AppService: AppService) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(4)]],
@@ -73,9 +76,15 @@ export class HomePage implements OnInit {
   }
 
 
+  /*  fireEvent() {
+     this.childEvent.emit('hai')
+   } */
+
   ngOnInit() {
     if (localStorage.getItem('token')) {
       var uses = JSON.parse(localStorage.getItem('token'))
+      // this.childEvent.emit('hai')
+      this.AppService.stringSubject.next('admin')
       if (uses.token) {
         if (uses.role == 'admin') {
           this.router.navigate(['/dashboard']);
@@ -98,13 +107,14 @@ export class HomePage implements OnInit {
   submit() {
     this.submitted = true;
     if (!this.loginForm.valid) {
-      console.log('All fields are required.')
       return false;
     } else {
-      console.log(this.loginForm.value)
       this.auth.login(this.loginForm.value).subscribe((response) => {
-        console.log(response)
+
         if (response && response.status == 1) {
+
+          this.AppService.stringSubject.next('admin')
+
           if (response.response.role == 'admin') {
             this.router.navigate(['/dashboard']);
           } else {

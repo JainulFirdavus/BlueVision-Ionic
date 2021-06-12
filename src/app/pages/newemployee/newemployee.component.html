@@ -1,0 +1,62 @@
+<ion-toolbar>
+  <ion-title>Blue Vision</ion-title>
+  <ion-buttons slot="end">
+    <ion-menu-button router-lin=k ></ion-menu-button>
+  </ion-buttons>
+  <ion-icon slot="start" routerLink="/dashboard"  name="arrow-back"></ion-icon>
+</ion-toolbar>
+
+<ion-content>
+
+  <div class="orders"></div>
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input inputmode="text" formControlName='username'></ion-input>
+    </ion-item>
+    <div>
+      <ng-container *ngIf="(username.dirty || username.touched)">
+        <small *ngIf="username.hasError('required')" class=" error-message" [ngStyle]="{'color': 'red'}">Username
+          Required</small>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input inputmode="email" formControlName="email"></ion-input>
+
+    </ion-item>
+    <ng-container *ngIf="(email.dirty || email.touched)">
+      <small *ngIf="email.hasError('required')" class=" error-message" [ngStyle]="{'color': 'red'}">Email
+        Required</small>
+    </ng-container>
+
+    <ion-item>
+      <ion-label position="floating">Mobile</ion-label>
+      <ion-input inputmode="email" formControlName="phone"></ion-input>
+
+    </ion-item>
+    <ng-container *ngIf="(phone.dirty || phone.touched)">
+      <small *ngIf="phone.hasError('required')" class=" error-message" [ngStyle]="{'color': 'red'}">Mobile
+        Required</small>
+    </ng-container>
+    <ion-item>
+      <ion-label position="floating">password</ion-label>
+      <ion-input placeholder='Password' type="password" formControlName='password' required>
+      </ion-input>
+    </ion-item>
+    <ng-container *ngIf="(password.dirty || password.touched)">
+      <small *ngIf="password.hasError('required')" class=" error-message" [ngStyle]="{'color': 'red'}">password
+        Required</small>
+    </ng-container>
+    <ion-item>
+      <ion-label position=" ">Admin</ion-label>
+
+      <ion-checkbox checked="false" formControlName="role"></ion-checkbox>
+
+
+    </ion-item>
+    <ion-button [disabled]="!employeeForm.valid" type="submit" shape="round">Register</ion-button>
+
+  </form>
+</ion-content>

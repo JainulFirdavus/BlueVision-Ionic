@@ -27,7 +27,6 @@ export class OrdersPage implements OnInit {
     })
 
     this.http.post(this.baseUrl + '/order/getorders', {}).subscribe(data => {
-      console.log('2', data)
       if (data['response'] && data['response']) {
         this.orderList = data['response'].data
       }
@@ -36,9 +35,7 @@ export class OrdersPage implements OnInit {
 
 
   search() {
-    console.log('2', this.orderForm.value)
     this.http.post(this.baseUrl + '/order/getorders', this.orderForm.value).subscribe(data => {
-      console.log('2', data)
       if (data['response'] && data['response']) {
         this.orderList = data['response'].data
       }
@@ -46,13 +43,10 @@ export class OrdersPage implements OnInit {
   }
 
   export() {
-    console.log('2', this.orderForm.value)
     this.http.post(this.baseUrl + '/order/orderExport', this.orderForm.value).subscribe(data => {
-      console.log('2', data)
       if (data['response'] && data['response']) {
         /*  const url = 'http://www.example.com/file.pdf';
-         this.fileTransfer.download(url, this.file.dataDirectory + 'file.pdf').then((entry) => {
-           console.log('download complete: ' + entry.toURL());
+         this.fileTransfer.download(url, this.file.dataDirectory + 'file.pdf').then((entry) => { 
          }, (error) => {
            // handle error
          }); */
@@ -73,8 +67,7 @@ export class OrdersPage implements OnInit {
     this.router.navigate(['ordersdetails'], navigationExtras);
 
     // this.router.navigate(['/ordersdetails']);
-    /* this.http.post(this.baseUrl + '/order/getordeById', { _id: value }).subscribe(data => {
-      console.log('2', data)
+    /* this.http.post(this.baseUrl + '/order/getordeById', { _id: value }).subscribe(data => { 
       if (data['response'] && data['response']) {
         this.orderList = data['response'].data
 
