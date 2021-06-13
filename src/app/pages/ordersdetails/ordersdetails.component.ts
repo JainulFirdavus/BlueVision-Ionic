@@ -46,7 +46,7 @@ export class OrdersdetailsComponent implements OnInit {
     })
 
  
-    this.http.post(this.baseUrl + '/order/getordeById', { _id: this.id }).subscribe(data => {
+    this.http.post(this.baseUrl + '/order/getordeById', { _id: this.id }).subscribe(data => { 
       if (data['response']) { 
         this.order_id = data['response'].order_id;
         this.orderForm.patchValue({

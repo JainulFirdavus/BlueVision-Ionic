@@ -39,11 +39,11 @@ export class AppComponent implements OnInit {
             icon: 'bicycle-outline',
             url: '/customervisit'
           },
-          /* {
+          {
             name: 'Report',
             icon: 'ribbon-outline',
             url: '/report'
-          }, */
+          },
           {
             name: 'My Profile',
             icon: 'bicycle-outline',
@@ -124,11 +124,11 @@ export class AppComponent implements OnInit {
             icon: 'bicycle-outline',
             url: '/customervisit'
           },
-          /*  {
+           {
              name: 'Report',
              icon: 'ribbon-outline',
              url: '/report'
-           }, */
+           },
           {
             name: 'My Profile',
             icon: 'bicycle-outline',

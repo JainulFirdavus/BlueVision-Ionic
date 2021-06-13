@@ -1,0 +1,74 @@
+ion-toolbar {
+    height: 75px;
+    --background: linear-gradient( 135deg, #52E5E7 10%, #130CB7 100%);
+}
+
+ion-menu-button {
+    color: #fff;
+    font-size: 28px;
+    margin-top: 12px;
+}
+
+ion-title {
+    font-size: 28px;
+    margin-top: 12px;
+    text-align: center;
+    margin-left: 15px;
+    color: #fff;
+}
+
+ion-icon {
+    color: #fff;
+    font-size: 28px;
+    margin-top: 12px;
+    margin-left: 12px;
+}
+
+ion-item {
+    border: 1px solid #dcdcdc;
+    font-size: 13px;
+    --min-height: 0;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20%;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.dates {
+    margin-top: 20px;
+}
+
+.submitbtn {
+    margin-top: 30px;
+}
+
+.tablename {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ddd;
+    background: #dcdcdc;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+
+th {
+    text-align: left;
+    padding: 10px 10px;
+    white-space: nowrap;
+    font-size: 15px;
+}
+
+td {
+    text-align: center;
+    padding: 10px 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}

@@ -20,7 +20,7 @@ export class OrderformPage implements OnInit {
   orderForm: FormGroup;
   submitted: boolean = false;
 
-  empolyee_id = JSON.parse(localStorage.getItem('token')).user_id ? JSON.parse(localStorage.getItem('token')).user_id : ''
+  employee_id = JSON.parse(localStorage.getItem('token')).user_id ? JSON.parse(localStorage.getItem('token')).user_id : ''
 
   baseUrl = environment.baseUrl;
 
@@ -117,7 +117,7 @@ export class OrderformPage implements OnInit {
       grand_total: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       next_visit: ['', Validators.required],
       refered_by: [''],
-      empolyee_id: [this.empolyee_id, Validators.required],
+      employee_id: [this.employee_id, Validators.required],
       delivery_status: ['', Validators.required],
       paid_status: ['', Validators.required],
 
