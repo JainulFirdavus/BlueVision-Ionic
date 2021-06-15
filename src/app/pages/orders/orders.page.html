@@ -50,7 +50,7 @@
                         <ion-button class="export" (click)="export()" size=small>Export</ion-button>
                     </ion-col>
                     <ion-col size=4>
-                        <ion-button class="reset" size=small>Reset</ion-button>
+                        <ion-button class="reset"  (click)="resetForm()" size=small>Reset</ion-button>
                     </ion-col>
 
                 </ion-row>
@@ -74,11 +74,11 @@
                 <tr *ngFor="let order of orderList">
                     <td>{{order.order_id}}</td>
                     <td>{{order.created | date:'fullDate'}}</td>
-                    <td>{{order.users.name}}</td>
-                    <td>{{order.total_amount}}</td>
-                    <td>{{order.discount}}</td>
-                    <td>{{order.advance}}</td>
-                    <td>{{order.balance}}</td>
+                    <td>{{order.customer_name}}</td>
+                    <td>₹ {{order.total_amount}}</td>
+                    <td>₹ {{order.discount}}</td>
+                    <td>₹ {{order.advance}}</td>
+                    <td>₹ {{order.balance}}</td>
                     <td>{{order.delivery_status}}</td>
                     <td>
                         <ion-button class="export" (click)="getdetails(order._id)" size=small>click</ion-button>

@@ -19,10 +19,11 @@ export class OrderformPage implements OnInit {
   current_employee: String;
   orderForm: FormGroup;
   submitted: boolean = false;
-
+  baseUrl = environment.baseUrl;
+  user_home = (JSON.parse(localStorage.getItem('token')) && JSON.parse(localStorage.getItem('token')).role == 'admin') ? '/dashboard' : '/orders';
   employee_id = JSON.parse(localStorage.getItem('token')).user_id ? JSON.parse(localStorage.getItem('token')).user_id : ''
 
-  baseUrl = environment.baseUrl;
+
 
   validation_messages = {
     'order_date': [
@@ -51,7 +52,7 @@ export class OrderformPage implements OnInit {
     'discount': [{ type: 'required', message: 'Discount  is required.' }, { type: 'pattern', message: 'Your Discount must contain only numbers .' }],
     'advance': [{ type: 'required', message: 'Advance  is required.' }, { type: 'pattern', message: 'Your Advance must contain only numbers .' }],
     'balance': [{ type: 'required', message: 'Balance  is required.' }, { type: 'pattern', message: 'Your Balance must contain only numbers .' }],
-    'grand_total': [{ type: 'required', message: 'G Total is required.' }, { type: 'pattern', message: 'Your Total must contain only numbers .' }],
+    // 'grand_total': [{ type: 'required', message: 'G Total is required.' }, { type: 'pattern', message: 'Your Total must contain only numbers .' }],
     'delivery_status': [{ type: 'required', message: 'Delivery Status is required.' }],
 
   }
@@ -60,7 +61,8 @@ export class OrderformPage implements OnInit {
   async presentToast(message) {
     const toast = await this.toastController.create({
       message: message,
-      duration: 2000
+      duration: 2000,
+      position: 'top'
     });
     toast.present();
   }
@@ -72,7 +74,7 @@ export class OrderformPage implements OnInit {
       order_id: [''/* { value: '', disabled: true } */, Validators.required],
       userId: [''],
       order_date: ['', Validators.required],
-      created: ['', Validators.required],
+      // created: ['', Validators.required],
       delivery_date: ['', Validators.required],
       customer_phone: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       customer_name: ['', Validators.required],
@@ -82,13 +84,13 @@ export class OrderformPage implements OnInit {
       lens_type: ['', Validators.required],
       lens_price: ['', Validators.required],
       tint: ['', Validators.required],
-      tint_discount: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      lens_tax: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      tint_discount: ['', [Validators.required,]],
+      lens_tax: ['', [Validators.required,]],
       frame_type: ['', Validators.required],
-      frame_price: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      frame_price: ['', [Validators.required,]],
       frame_brand: ['', Validators.required],
-      frame_tax: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      frame_discount: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      frame_tax: ['', [Validators.required]],
+      frame_discount: ['', [Validators.required]],
       frame_details: this.formBuilder.group({
         right: this.formBuilder.group({
           dv_sph: ['', Validators.required],
@@ -110,11 +112,11 @@ export class OrderformPage implements OnInit {
       }),
 
 
-      total_amount: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      discount: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      advance: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      balance: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-      grand_total: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      total_amount: ['', [Validators.required]],
+      discount: ['', [Validators.required]],
+      advance: ['', [Validators.required]],
+      balance: ['', [Validators.required]],
+      // grand_total: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
       next_visit: ['', Validators.required],
       refered_by: [''],
       employee_id: [this.employee_id, Validators.required],
@@ -123,9 +125,9 @@ export class OrderformPage implements OnInit {
 
     })
 
-    /* if (localStorage.getItem('order')) { // testing
-      this.orderForm.patchValue(JSON.parse(localStorage.getItem('order')))
-    } */
+    /*   if (localStorage.getItem('order')) { // testing
+        this.orderForm.patchValue(JSON.parse(localStorage.getItem('order')))
+      } */
 
 
     this.http.get(this.baseUrl + '/order/lastorder', {}).subscribe(data => {
@@ -165,48 +167,60 @@ export class OrderformPage implements OnInit {
 
   updateCalc() {
 
-    let lens_price = parseFloat(this.orderForm.value.lens_price);
-    let lens_discount: number = parseFloat(this.orderForm.value.lens_price) * (parseFloat(this.orderForm.value.tint_discount) / 100)
-    let lens_tax = ((lens_price - lens_discount) * parseFloat(this.orderForm.value.lens_tax) / 100)
+    let lens_price = parseInt(this.orderForm.value.lens_price);
+    let lens_discount: number = parseInt(this.orderForm.value.lens_price) * (parseInt(this.orderForm.value.tint_discount) / 100)
+    let lens_tax = ((lens_price - lens_discount) * parseInt(this.orderForm.value.lens_tax) / 100)
     let lens_cal = (lens_price /* - lens_discount */) + lens_tax;
 
-    let frame_price = parseFloat(this.orderForm.value.frame_price);
-    let frame_discount: number = parseFloat(this.orderForm.value.frame_price) * (parseFloat(this.orderForm.value.frame_discount) / 100)
-    let frame_tax = ((frame_price - frame_discount) * parseFloat(this.orderForm.value.frame_tax) / 100)
+    let frame_price = parseInt(this.orderForm.value.frame_price);
+    let frame_discount: number = parseInt(this.orderForm.value.frame_price) * (parseInt(this.orderForm.value.frame_discount) / 100)
+    let frame_tax = ((frame_price - frame_discount) * parseInt(this.orderForm.value.frame_tax) / 100)
     let frame_cal = (frame_price /* - frame_discount */) + frame_tax;
 
     this.orderForm.patchValue({
-      total_amount: lens_cal + frame_cal
+      total_amount: Math.round(lens_cal + frame_cal)
     })
 
     if (this.orderForm.value.total_amount > 0) {
       this.orderForm.patchValue({
-        discount: frame_discount + lens_discount,
-        balance: ((lens_cal + frame_cal) - (lens_discount + frame_discount)) - this.orderForm.value.advance
+        discount: Math.round(frame_discount + lens_discount),
+        balance: Math.round((lens_cal + frame_cal) - (lens_discount + frame_discount)) - this.orderForm.value.advance
       })
     }
 
   }
 
-
+  restart() {
+    this.orderForm.reset()
+  }
 
   onSubmit() {
+    for (let el in this.orderForm.controls) {
+      if (this.orderForm.controls[el].errors) {
+        console.log(el.split('_')[0], el.split('_')[1])
+        this.presentToast((el.split('_')[0] + ' ' + el.split('_')[1] ? el.split('_')[1] : '') + ' Required')
+        return;
+      }
+    }
+
     this.submitted = true;
+    // localStorage.setItem('order', JSON.stringify(this.orderForm.value)); // testing
+    this.orderForm.patchValue({
+      created: Date.now()
+    })
     if (this.orderForm.invalid) {
       this.presentToast('invalid details')
       return;
     } else {
-      this.orderForm.patchValue({
-        created: Date.now()
-      })
-      this.http.post(this.baseUrl + '/order/save', this.orderForm.value).subscribe((result) => { 
+      this.http.post(this.baseUrl + '/order/save', this.orderForm.value).subscribe((result) => {
         if (result['status'] == 0) {
           this.presentToast('invalid details')
           // localStorage.setItem('order', JSON.stringify(this.orderForm.value)); // testing
         } else {
+          this.presentToast('Order Place Successfully')
           // localStorage.removeItem('order');
           this.router.navigate(['/orders']);
-          this.orderForm.patchValue({})
+          // this.orderForm.patchValue({})
         }
       })
     }

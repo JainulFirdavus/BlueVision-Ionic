@@ -10,14 +10,15 @@ import { Subscription } from 'rxjs/Subscription'
 })
 export class AppComponent implements OnInit {
   menuList: any
+  userName: String
   userSub: Subscription;
   constructor(private AppService: AppService) { }
 
   ngOnInit() {
 
     this.AppService.stringSubject.subscribe(items => {
-
       if (items == 'admin') {
+        this.userName = (JSON.parse(localStorage.getItem('token')) && JSON.parse(localStorage.getItem('token')).username) ? JSON.parse(localStorage.getItem('token')).username : 'Blue Vision';
         this.menuList = [
           {
             name: 'Dashboard',
@@ -52,7 +53,7 @@ export class AppComponent implements OnInit {
           {
             name: 'Create Account',
             icon: 'bicycle-outline',
-            url: '/createaccount'
+            url: '/newemployee'
           },
           {
             name: 'Settings',
@@ -102,6 +103,8 @@ export class AppComponent implements OnInit {
 
     if (localStorage.getItem('token')) {
       var uses = JSON.parse(localStorage.getItem('token'))
+      this.userName = (JSON.parse(localStorage.getItem('token')) && JSON.parse(localStorage.getItem('token')).username) ? JSON.parse(localStorage.getItem('token')).username : 'Blue Vision';
+
       if (uses.role == 'admin') {
         this.menuList = [
           {
@@ -124,11 +127,11 @@ export class AppComponent implements OnInit {
             icon: 'bicycle-outline',
             url: '/customervisit'
           },
-           {
-             name: 'Report',
-             icon: 'ribbon-outline',
-             url: '/report'
-           },
+          {
+            name: 'Report',
+            icon: 'ribbon-outline',
+            url: '/report'
+          },
           {
             name: 'My Profile',
             icon: 'bicycle-outline',

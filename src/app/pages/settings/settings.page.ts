@@ -12,6 +12,7 @@ export class SettingsPage implements OnInit {
   settingForm: FormGroup;
   submitted = false;
   userList: any;
+  user_home = (JSON.parse(localStorage.getItem('token')) && JSON.parse(localStorage.getItem('token')).role == 'admin') ? '/dashboard' : '/order';
   constructor(public formBuilder: FormBuilder, private auth: PageService, private router: Router, public toastController: ToastController) {
     this.settingForm = this.formBuilder.group({
       title: ['', [Validators.minLength(6), Validators.maxLength(15)]],

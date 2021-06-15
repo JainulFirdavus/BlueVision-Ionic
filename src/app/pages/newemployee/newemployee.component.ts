@@ -14,12 +14,22 @@ import { ToastController } from '@ionic/angular';
 export class NewemployeeComponent implements OnInit {
   id: any;
   baseUrl = environment.baseUrl;
+  user_home = (JSON.parse(localStorage.getItem('token')) && JSON.parse(localStorage.getItem('token')).role == 'admin') ? '/dashboard' : '/orders';
+
   employeeForm: any;
   submitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private route: ActivatedRoute,
     public toastController: ToastController) {
 
+  }
+
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 
   public errorMessages = {
@@ -49,8 +59,6 @@ export class NewemployeeComponent implements OnInit {
 
 
   ngOnInit() {
-
-
     this.employeeForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
       email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
@@ -87,13 +95,18 @@ export class NewemployeeComponent implements OnInit {
     this.http.post(this.baseUrl + '/employee/register', this.employeeForm.value).subscribe(response => {
       if (response['response'].status == 1) {
         // this.router.navigate(['/home']);
-        this.employeeForm.patchValue({
-
-        })
+        this.employeeForm.reset();
+        /*   this.employeeForm.patchValue({
+  
+          }) */
         this.router.navigate(['/dashboard']);
-      } else { 
         this.toastController.create({
-          message: 'invalid credentials',
+          message: 'Account Created Successfully',
+          // duration: 2000
+        });
+      } else {
+        this.toastController.create({
+          message: 'Invalid Credentials',
           // duration: 2000
         });
       }

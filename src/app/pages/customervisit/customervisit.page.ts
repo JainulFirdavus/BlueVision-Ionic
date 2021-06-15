@@ -12,6 +12,7 @@ export class CustomervisitPage implements OnInit {
   getuser: FormGroup;
   submitted = false;
   userList: any;
+  user_home = (JSON.parse(localStorage.getItem('token')) && JSON.parse(localStorage.getItem('token')).role == 'admin') ? '/dashboard' : '/orders';
   constructor(public formBuilder: FormBuilder, private auth: PageService, private router: Router, public toastController: ToastController) {
     this.getuser = this.formBuilder.group({
       date: ['', [Validators.required]],

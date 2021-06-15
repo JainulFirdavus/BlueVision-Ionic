@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { HttpClient, HttpErrorResponse, } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { ToastController } from '@ionic/angular';
+
 @Component({
   selector: 'app-ordersdetails',
   templateUrl: './ordersdetails.component.html',
@@ -12,11 +14,12 @@ import { environment } from '../../../environments/environment';
 export class OrdersdetailsComponent implements OnInit {
   id: any;
   baseUrl = environment.baseUrl;
+  user_home = (JSON.parse(localStorage.getItem('token')) && JSON.parse(localStorage.getItem('token')).role == 'admin') ? '/dashboard' : '/order';
   order_id: string;
   orderForm: any;
   submitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private route: ActivatedRoute, public toastController: ToastController) {
     this.route.queryParams.subscribe(params => {
       if (params && params.id) {
         this.id = params.id
@@ -25,11 +28,20 @@ export class OrdersdetailsComponent implements OnInit {
   }
 
 
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'top'
+    });
+    toast.present();
+  }
 
   ngOnInit() {
 
     this.orderForm = this.formBuilder.group({
       order_date: ['', Validators.required],
+      _id: ['', Validators.required],
       created: ['', Validators.required],
       advance: ['', Validators.required],
       balance: ['', Validators.required],
@@ -45,11 +57,12 @@ export class OrdersdetailsComponent implements OnInit {
       paid_status: ['', Validators.required],
     })
 
- 
-    this.http.post(this.baseUrl + '/order/getordeById', { _id: this.id }).subscribe(data => { 
-      if (data['response']) { 
+
+    this.http.post(this.baseUrl + '/order/getordeById', { _id: this.id }).subscribe(data => {
+      if (data['response']) {
         this.order_id = data['response'].order_id;
         this.orderForm.patchValue({
+          _id: data['response']._id,
           advance: data['response'].advance,
           balance: data['response'].balance,
           customer_address: data['response'].customer_address,
@@ -68,10 +81,7 @@ export class OrdersdetailsComponent implements OnInit {
     })
   }
 
-
-
   updateCalc() {
-
     this.orderForm.patchValue({
       total_amount: 0
     })
@@ -79,9 +89,16 @@ export class OrdersdetailsComponent implements OnInit {
 
 
   submit() {
-    this.http.post(this.baseUrl + '/order/getorders', this.orderForm.value).subscribe(data => { 
+    this.http.post(this.baseUrl + '/order/save', this.orderForm.value).subscribe(data => {
       if (data['response'] && data['response']) {
-        this.router.navigate(['/orders']);
+        this.router.navigate(['/orders']).then(() => {
+          window.location.reload();
+        });;
+        this.presentToast('Order Updated')
+
+      } else {
+        this.presentToast('invalid details')
+
       }
     })
   }

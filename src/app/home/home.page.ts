@@ -84,7 +84,9 @@ export class HomePage implements OnInit {
     if (localStorage.getItem('token')) {
       var uses = JSON.parse(localStorage.getItem('token'))
       // this.childEvent.emit('hai')
-      this.AppService.stringSubject.next('admin')
+      console.log(uses.role);
+
+      this.AppService.stringSubject.next(uses.role)
       if (uses.token) {
         if (uses.role == 'admin') {
           this.router.navigate(['/dashboard']);
@@ -110,11 +112,9 @@ export class HomePage implements OnInit {
       return false;
     } else {
       this.auth.login(this.loginForm.value).subscribe((response) => {
-
         if (response && response.status == 1) {
-
-          this.AppService.stringSubject.next('admin')
-
+          // this.presentToast(response['status'])
+          this.AppService.stringSubject.next(response.response.role)
           if (response.response.role == 'admin') {
             this.router.navigate(['/dashboard']);
           } else {

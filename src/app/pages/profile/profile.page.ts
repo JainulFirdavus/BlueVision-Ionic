@@ -12,6 +12,7 @@ export class ProfilePage implements OnInit {
   settinguserForm: FormGroup;
   submitted = false;
   userList: any;
+  user_home = (JSON.parse(localStorage.getItem('token')) && JSON.parse(localStorage.getItem('token')).role == 'admin') ? '/dashboard' : '/order';
   constructor(public formBuilder: FormBuilder, private auth: PageService, private router: Router, public toastController: ToastController) {
     this.settinguserForm = this.formBuilder.group({
       username: ['', [Validators.minLength(6), Validators.maxLength(15)]],
@@ -36,11 +37,16 @@ export class ProfilePage implements OnInit {
     toast.present();
   }
   ngOnInit() {
-    this.auth.getDeatils({ _id: JSON.parse(localStorage.getItem('token')).user_id }).subscribe((response) => {
+    let user = JSON.parse(localStorage.getItem('token'))
+    console.log(user.user_id);
+
+    this.auth.getDeatils({ _id: user.user_id }).subscribe((response) => {
       if (response['status'] != 0) {
         this.settinguserForm.patchValue(response['response'])
       } else {
-        this.presentToast('No Record')
+        localStorage.removeItem('token')
+        this.presentToast('Invaid user')
+        this.router.navigate(['/logout']);
       }
     })
   }

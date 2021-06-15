@@ -10,8 +10,9 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
   baseUrl = environment.baseUrl;
+
+  
   orderForm: FormGroup;
   submitted: boolean = false;
   todayOrder: String
@@ -31,7 +32,7 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
 
-    this.http.post(this.baseUrl + '/admin/dashboard', {}).subscribe(data => {
+    this.http.post(this.baseUrl+ '/admin/dashboard', {}).subscribe(data => {
 
       if (data['response'] && data['response']) {
         this.todayOrder = data['response'].today

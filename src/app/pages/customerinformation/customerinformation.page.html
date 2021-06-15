@@ -4,7 +4,7 @@
     <ion-buttons slot="end">
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-icon slot="start" name="arrow-back"></ion-icon>
+    <ion-icon slot="start" routerLink="{{user_home}}"  name="home"></ion-icon>
 </ion-toolbar>
 <ion-content>
 
@@ -43,7 +43,7 @@
                 <td>{{user.customer_phone}}</td>
                 <td>{{user.customer_address}}</td>
                 <td>{{user.next_visit | date:'fullDate'}}</td>
-                <td>{{user.grand_total}}</td>
+                <td>₹ {{user.total_amount}}</td>
                 <td>{{user.status}}</td>
 
                 <!--  <td>{{userList.upcomming_visit.vistedDate | date:'fullDate'}}</td>

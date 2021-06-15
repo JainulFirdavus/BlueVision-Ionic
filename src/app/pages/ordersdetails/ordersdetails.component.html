@@ -3,7 +3,7 @@
   <ion-buttons slot="end">
     <ion-menu-button></ion-menu-button>
   </ion-buttons>
-  <ion-icon slot="start" name="arrow-back" routerLink="/orders"></ion-icon>
+  <ion-icon slot="start" routerLink="{{user_home}}" name="home"></ion-icon>
 </ion-toolbar>
 
 <ion-content>
@@ -11,7 +11,7 @@
     <h2>Order - {{order_id}} </h2>
   </div>
   <div class="orders"></div>
-  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="orderForm">
 
     <div class="form ion-text-center">
       <!-- <ion-item class="orderform" lines='none'>
@@ -100,21 +100,21 @@
             <ion-item class="select" lines='none'>
               <ion-label position="floating">Delivered Status</ion-label>
               <ion-select formControlName="delivery_status">
-                <ion-select-option value="CR">pending</ion-select-option>
-                <ion-select-option value="GL">Fitting</ion-select-option>
-                <ion-select-option value="HC">Ready to Deliver</ion-select-option>
-                <ion-select-option value="ARC">Delivered</ion-select-option>
+                <ion-select-option value="Pending">Pending</ion-select-option>
+                <ion-select-option value="Fitting">Fitting</ion-select-option>
+                <ion-select-option value="Ready">Ready to Deliver</ion-select-option>
+                <ion-select-option value="Delivered">Delivered</ion-select-option>
               </ion-select>
             </ion-item>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size=3>
-            <ion-button class="cancelbtn" size="medium">Cancel</ion-button>
+            <ion-button class="cancelbtn" routerLink="/orders" size="medium">Cancel</ion-button>
           </ion-col>
           <ion-col size=2></ion-col>
           <ion-col size=7>
-            <ion-button class="savebtn" size="medium">Save & Print</ion-button>
+            <ion-button class="savebtn" (click)="submit()" size="medium">Save & Print</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

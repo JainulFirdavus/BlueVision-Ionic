@@ -4,7 +4,7 @@
     <ion-buttons slot="end">
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-icon slot="start" routerLink="/orders" name="arrow-back"></ion-icon>
+    <ion-icon slot="start" routerLink="{{user_home}}" name="home"></ion-icon>
 </ion-toolbar>
 <ion-content>
     <div>
@@ -32,7 +32,7 @@
 
                 <tr *ngFor="let users of userList">
                     <td>{{users.customer_name}}</td>
-                      <td>{{users.customer_phone}}</td>
+                    <td>{{users.customer_phone}}</td>
                     <td>{{users.created | date:'fullDate'}}</td>
                     <td>{{users.next_visit | date:'fullDate'}}</td>
                 </tr>

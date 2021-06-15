@@ -2,7 +2,7 @@
 
     <ion-title>Blue Vision</ion-title>
     <ion-buttons slot="end">
-        <ion-menu-button (click)=getmenu()></ion-menu-button>
+        <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <!-- <ion-icon slot="start" name="arrow-back"></ion-icon> -->
 </ion-toolbar>
@@ -21,7 +21,7 @@
             <div class="ordersvalue">
                 <div class="orders">Order<span style="display:block;margin-top:15px;">{{todaycount}}</span>
                 </div>
-                <div class="orders">Value<span style="display:block;margin-top:15px;">{{todayValue}}</span></div>
+                <div class="orders">Value<span style="display:block;margin-top:15px;">₹ {{todayValue}}</span></div>
             </div>
 
         </div>
@@ -33,8 +33,8 @@
         <div class="secondbox">
             <div class="todaypayment">Today Payment</div>
             <div class="ordersvalue2">
-                <div class="orders1">Advance<span style="display:block;margin-top:15px;">{{todayAdvance}}</span></div>
-                <div class="orders1">Balance<span style="display:block;margin-top:15px;">{{todayBalance}}</span></div>
+                <div class="orders1">Advance<span style="display:block;margin-top:15px;">₹ {{todayAdvance}}</span></div>
+                <div class="orders1">Balance<span style="display:block;margin-top:15px;">₹ {{todayBalance}}</span></div>
                 <div class="orders1">Settled<span style="display:block;margin-top:15px;">{{todaySettled}}</span></div>
             </div>
 
@@ -47,8 +47,8 @@
         <div class="thirdbox">
             <div class="total">Total</div>
             <div class="ordersvalue4">
-                <div class="orders2">Orders<span style="display:block;margin-top:15px;">{{totalValue}}</span></div>
-                <div class="orders2">Value<span style="display:block;margin-top:15px;">{{totalcount}}</span></div>
+                <div class="orders2">Orders<span style="display:block;margin-top:15px;">{{totalcount}}</span></div>
+                <div class="orders2">Value<span style="display:block;margin-top:15px;">₹ {{totalValue}}</span></div>
 
             </div>
 
