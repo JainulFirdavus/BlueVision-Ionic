@@ -26,8 +26,7 @@
                         <ion-col size=5>
                             <ion-item [ngClass]="{ 'is-invalid': submitted && f.order_date.errors }">
                                 <ion-label position="floating">Order Date</ion-label>
-                                <ion-datetime class="form-controll" formControlName="order_date"
-                                    displayFormat="MM/DD/YYYY" required>
+                                <ion-datetime class="form-controll" formControlName="order_date" displayFormat="MM/DD/YYYY" required>
                                 </ion-datetime>
                             </ion-item>
                             <div class="validation-errors">
@@ -52,8 +51,7 @@
                         <ion-col size=8>
                             <ion-item [ngClass]="{ 'is-invalid': submitted && f.customer_phone.errors }">
                                 <ion-label position="floating">Phone</ion-label>
-                                <ion-input type="number" formControlName="customer_phone" placeholder='+91 1234567890'
-                                    required (focusout)="getuser()">
+                                <ion-input type="number" formControlName="customer_phone" placeholder='+91 1234567890' required (focusout)="getuser()">
                                 </ion-input>
                             </ion-item>
 
@@ -99,13 +97,10 @@
                         <ion-col size=3>
                         </ion-col>
                         <ion-col size=5>
-                            <ion-item class="select" lines='none'
-                                [ngClass]="{ 'is-invalid': submitted && f.customer_gender.errors }">
+                            <ion-item class="select" lines='none' [ngClass]="{ 'is-invalid': submitted && f.customer_gender.errors }">
                                 <ion-label position="floating">Gender</ion-label>
                                 <ion-select formControlName="customer_gender">
-                                    <ion-select-option
-                                        *ngFor="let val of  [{value:'Male', label:'Male'},{value:'Female', label: 'Female'},{value:'Other', label: 'Other'}]"
-                                        [value]="val.value">
+                                    <ion-select-option *ngFor="let val of  [{value:'Male', label:'Male'},{value:'Female', label: 'Female'},{value:'Other', label: 'Other'}]" [value]="val.value">
                                         {{val.label}}
                                     </ion-select-option>
                                 </ion-select>
@@ -119,50 +114,45 @@
                     </ion-row>
                     <ion-row>
                         <ion-col size=7>
-                            <ion-item class="select" lines='none'
-                                [ngClass]="{ 'is-invalid': submitted && f.lens_type.errors }">
+                            <ion-item class="select" lines='none' [ngClass]="{ 'is-invalid': submitted && f.lens_type.errors }">
                                 <ion-label>Lens Type</ion-label>
                                 <ion-select formControlName="lens_type">
-                                    <ion-select-option value="CR">CR</ion-select-option>
-                                    <ion-select-option value="GL">GL</ion-select-option>
-                                    <ion-select-option value="HC">HC</ion-select-option>
-                                    <ion-select-option value="ARC">ARC</ion-select-option>
-                                    <ion-select-option value="PROG">PROG</ion-select-option>
-                                    <ion-select-option value="DM">DM</ion-select-option>
-                                    <ion-select-option value="ARC+PROG">ARC+PROG</ion-select-option>
-                                    <ion-select-option value="HC+ARC">HC+ARC</ion-select-option>
-                                    <ion-select-option value="SV">SV</ion-select-option>
-                                    <ion-select-option value="Bifocal">Bifocal</ion-select-option>
-                                    <ion-select-option value="PROG">PROG</ion-select-option>
-
+                                    <ion-select-option value="FF">HC-SV</ion-select-option>
+                                    <ion-select-option value="FS">HC-Bifocal</ion-select-option>
+                                    <ion-select-option value="FSH">HC-Prog</ion-select-option>
+                                    <ion-select-option value="FRL">HMC-SV</ion-select-option>
+                                    <ion-select-option value="FRL">HMC-Bifocal</ion-select-option>
+                                    <ion-select-option value="FRL">HMC-Prog</ion-select-option>
+                                    <ion-select-option value="FRL">glass-SV</ion-select-option>
+                                    <ion-select-option value="FRL">glass-KM</ion-select-option>
+                                    <ion-select-option value="FRL">glass-EX</ion-select-option>
                                 </ion-select>
                             </ion-item>
                         </ion-col>
                         <ion-col size=5>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.lens_price.errors }">
-                                <ion-label position="floating">Lens Price</ion-label>
-                                <ion-input placeholder='2000' type="number" formControlName="lens_price"
-                                    (ngModelChange)="updateCalc()"></ion-input>
+                                <ion-label position="floating">Brand</ion-label>
+                                <ion-input placeholder='2000' type="number" formControlName="lens_price" (ngModelChange)="updateCalc()"></ion-input>
                             </ion-item>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.tint.errors }">
-                                <ion-label position="floating">Tint</ion-label>
+                                <ion-label position="floating">Warranty</ion-label>
                                 <ion-input formControlName="tint"></ion-input>
                             </ion-item>
                         </ion-col>
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.tint_discount.errors }">
-                                <ion-label position="floating">Tint Discount</ion-label>
+                                <ion-label position="floating">Price</ion-label>
                                 <ion-input type="number" formControlName="tint_discount" (ngModelChange)="updateCalc()">
                                 </ion-input>
                             </ion-item>
                         </ion-col>
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.lens_tax.errors }">
-                                <ion-label position="floating">TAX/GST%</ion-label>
+                                <ion-label position="floating">Tax</ion-label>
                                 <ion-input type="number" formControlName="lens_tax" (ngModelChange)="updateCalc()">
                                 </ion-input>
                             </ion-item>
@@ -170,21 +160,21 @@
                     </ion-row>
                     <ion-row>
                         <ion-col size=6>
-                            <ion-item class="select" lines='none'
-                                [ngClass]="{ 'is-invalid': submitted && f.frame_type.errors }">
+                            <ion-item class="select" lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_type.errors }">
                                 <ion-label>Frame Type</ion-label>
                                 <ion-select formControlName="frame_type">
-                                    <ion-select-option value="FF">FF</ion-select-option>
-                                    <ion-select-option value="FS">FS</ion-select-option>
-                                    <ion-select-option value="FSH">FSH</ion-select-option>
-                                    <ion-select-option value="FRL">FRL</ion-select-option>
+                                    <ion-select-option value="FF">F.M</ion-select-option>
+                                    <ion-select-option value="FS">F.S</ion-select-option>
+                                    <ion-select-option value="FSH">H.M</ion-select-option>
+                                    <ion-select-option value="FRL">H.S</ion-select-option>
+                                    <ion-select-option value="FRL">Rim</ion-select-option>
                                 </ion-select>
                             </ion-item>
                         </ion-col>
                         <ion-col size=2></ion-col>
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_price.errors }">
-                                <ion-label position="floating">Frame Price</ion-label>
+                                <ion-label position="floating">Brand</ion-label>
                                 <ion-input type="number" formControlName="frame_price" (ngModelChange)="updateCalc()">
                                 </ion-input>
                             </ion-item>
@@ -193,21 +183,20 @@
                     <ion-row>
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_brand.errors }">
-                                <ion-label position="floating">Brand</ion-label>
+                                <ion-label position="floating">Warranty</ion-label>
                                 <ion-input formControlName="frame_brand"></ion-input>
                             </ion-item>
                         </ion-col>
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_discount.errors }">
-                                <ion-label position="floating">Frame Discount</ion-label>
-                                <ion-input type="number" formControlName="frame_discount"
-                                    (ngModelChange)="updateCalc()"></ion-input>
+                                <ion-label position="floating">Price</ion-label>
+                                <ion-input type="number" formControlName="frame_discount" (ngModelChange)="updateCalc()"></ion-input>
                             </ion-item>
 
                         </ion-col>
                         <ion-col size=4>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.frame_tax.errors }">
-                                <ion-label position="floating">TAX/GST%</ion-label>
+                                <ion-label position="floating">Tax</ion-label>
                                 <ion-input type="number" formControlName="frame_tax" (ngModelChange)="updateCalc()">
                                 </ion-input>
                             </ion-item>
@@ -316,8 +305,7 @@
                 <ion-grid>
                     <ion-row>
                         <ion-col size=4>
-                            <ion-item class="amount" lines='none'
-                                [ngClass]="{ 'is-invalid': submitted && f.total_amount.errors }">
+                            <ion-item class="amount" lines='none' [ngClass]="{ 'is-invalid': submitted && f.total_amount.errors }">
                                 <ion-label position="floating">Total Amount</ion-label>
                                 <ion-input placeholder="0" type="number" formControlName="total_amount"></ion-input>
                             </ion-item>
@@ -331,15 +319,13 @@
                         <ion-col size=3>
                             <ion-item lines='none' [ngClass]="{ 'is-invalid': submitted && f.advance.errors }">
                                 <ion-label position="floating">Advance</ion-label>
-                                <ion-input placeholder="0" type="number" formControlName="advance"
-                                    (ngModelChange)="updateCalc()"></ion-input>
+                                <ion-input placeholder="0" type="number" formControlName="advance" (ngModelChange)="updateCalc()"></ion-input>
                             </ion-item>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col size=5>
-                            <ion-item class="amount" lines='none'
-                                [ngClass]="{ 'is-invalid': submitted && f.balance.errors }">
+                            <ion-item class="amount" lines='none' [ngClass]="{ 'is-invalid': submitted && f.balance.errors }">
                                 <ion-label position="floating">Balance</ion-label>
                                 <ion-input placeholder="0" type="number" formControlName="balance"></ion-input>
                             </ion-item>
@@ -379,14 +365,31 @@
 
                         </ion-col>
                         <ion-col size=6>
-                            <ion-item class="select" lines='none'
-                                [ngClass]="{ 'is-invalid': submitted && f.delivery_status.errors }">
+                            <ion-item class="select" lines='none' [ngClass]="{ 'is-invalid': submitted && f.delivery_status.errors }">
                                 <ion-label position="floating">Delivered Status</ion-label>
                                 <ion-select formControlName="delivery_status">
                                     <ion-select-option value="Pending">Pending</ion-select-option>
                                     <ion-select-option value="Fitting">Fitting</ion-select-option>
                                     <ion-select-option value="Ready">Ready to Deliver</ion-select-option>
                                     <ion-select-option value="Delivered">Delivered</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col size=6>
+                            <ion-item lines='none'>
+                                <ion-label position="floating">Order Taken By</ion-label>
+                                <ion-input formControlName="refered_by"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col size=6>
+                            <ion-item class="select" lines='none'>
+                                <ion-label>Branch</ion-label>
+                                <ion-select formControlName="lens_type">
+                                    <ion-select-option value="Branch1">Branch 1</ion-select-option>
+                                    <ion-select-option value="Branch2">Branch 2</ion-select-option>
+                                    <ion-select-option value="Branch3">Branch 3</ion-select-option>
                                 </ion-select>
                             </ion-item>
                         </ion-col>
@@ -400,7 +403,7 @@
                             <ion-button class="savebtn" size="medium">Save & Close</ion-button>
                         </ion-col> -->
                         <ion-col size=4>
-                            <ion-button class="savebtn" type="submit" size="medium">Save & Print</ion-button>
+                            <ion-button class="savebtn" type="submit" size="medium">Save & Close</ion-button>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
