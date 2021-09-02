@@ -24,7 +24,7 @@
  *  This workflow would not have the `package.json` file.
  */
 // Coho updates this line
-const VERSION = '9.1.0';
+const VERSION = '9.0.0';
 
 var path = require('path');
 
@@ -85,8 +85,6 @@ class Api {
             build: path.join(this.root, 'build'),
             javaSrc: path.join(appMain, 'java')
         };
-
-        this._builder = require('./lib/builders/builders').getBuilder(this.root);
     }
 
     /**
@@ -163,7 +161,7 @@ class Api {
             if (plugin.getFrameworks(this.platform).length === 0) return;
             selfEvents.emit('verbose', 'Updating build files since android plugin contained <framework>');
             // This should pick the correct builder, not just get gradle
-            this._builder.prepBuildFiles();
+            require('./lib/builders/builders').getBuilder().prepBuildFiles();
         }.bind(this))
             // CB-11022 Return truthy value to prevent running prepare after
             .then(() => true);
@@ -195,7 +193,7 @@ class Api {
                 if (plugin.getFrameworks(this.platform).length === 0) return;
 
                 selfEvents.emit('verbose', 'Updating build files since android plugin contained <framework>');
-                this._builder.prepBuildFiles();
+                require('./lib/builders/builders').getBuilder().prepBuildFiles();
             }.bind(this))
             // CB-11022 Return truthy value to prevent running prepare after
             .then(() => true);

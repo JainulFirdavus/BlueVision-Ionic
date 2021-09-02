@@ -1,11 +1,16 @@
-<ion-toolbar>
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Blue Vision</ion-title>
+        <ion-buttons slot="end">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-icon slot="start" routerLink="{{user_home}}" name="home"></ion-icon>
+    </ion-toolbar>
+</ion-header>
 
-    <ion-title>Blue Vision</ion-title>
-    <ion-buttons slot="end">
-        <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-icon slot="start" routerLink="{{user_home}}" name="home"></ion-icon>
-</ion-toolbar>
+
+
+
 <ion-content>
     <div>
         <h2 class="ion-text-center">Customer Visit</h2>
@@ -24,21 +29,37 @@
         <div class="tablename" style="overflow-x:auto;" *ngIf="userList">
             <table>
                 <tr>
+                    <th class="order">Order ID</th>
                     <th class="order">Customer Name</th>
                     <th class="order">Phone</th>
-                    <th class="order">Visting Date</th>
                     <th class="order">Last Purchase Date</th>
+                    <th class="order">Visting Date</th>
+                    <th class="order">Sms Deliverd</th>
+                    <th class="order">Action</th>
                 </tr>
 
-                <tr *ngFor="let users of userList">
-                    <td>{{users.customer_name}}</td>
-                    <td>{{users.customer_phone}}</td>
-                    <td>{{users.created | date:'fullDate'}}</td>
-                    <td>{{users.next_visit | date:'fullDate'}}</td>
+                <tr *ngFor="let order of userList">
+                    <td>{{order.order_id}}</td>
+                    <td>{{order.customer_name}}</td>
+                    <td>{{order.customer_phone}}</td>
+                    <td>{{order.created | date:'dd MMM YYYY'}}</td>
+                    <td>{{order.next_visit | date:'dd MMM YYYY'}}</td>
+                    <td>{{order.message_status == 0 ? 'Not Delivered':'Delivered'}}</td>
+
+                    <td>
+                        <ion-icon class="print" [routerLink]="['/invoice', order._id]" name="print-outline">
+                        </ion-icon>
+                        <ion-icon class="print" (click)="sendmessage(order)" name="send-outline">
+                        </ion-icon>
+                    </td>
                 </tr>
             </table>
         </div>
 
 
     </form>
+
+
+
+
 </ion-content>

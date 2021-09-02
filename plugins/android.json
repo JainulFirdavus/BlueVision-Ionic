@@ -28,6 +28,12 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "io.ionic.starter"
+    },
+    "com.darktalker.cordova.screenshot": {
+      "PACKAGE_NAME": "io.ionic.starter"
     }
   },
   "dependent_plugins": {

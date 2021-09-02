@@ -52,13 +52,16 @@ export class PageService {
     }
 
     public customerVisit(data): any {
-
         return this.http.post(this.baseUrl + '/user/customerVisit', data)
+    }
+
+    
+    public sendmessage(data): any {
+        return this.http.post(this.baseUrl + '/user/sendmessage', data)
     }
 
 
     public updateemployee(data): any {
-
         return this.http.post(this.baseUrl + '/employee/update', data)
     }
 

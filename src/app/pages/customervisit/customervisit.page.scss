@@ -42,13 +42,18 @@ ion-button {
     --background: #52E5E7;
 }
 
+.print {
+    font-size: 22px;
+    color: red;
+}
+
 //-----------------------------------------------------------//
 h2 {
     margin-top: 50px;
 }
 
 .form {
-    margin-top: 35%;
+    margin-top: 50px;
 }
 
 
@@ -76,4 +81,25 @@ td {
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+ 
+
+
+
+.header .col {
+    background-color:lightgrey;
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+.col:last-child {
+    border-right: solid 1px grey;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
 }

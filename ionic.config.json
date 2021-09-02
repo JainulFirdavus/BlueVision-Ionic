@@ -7,7 +7,7 @@
   "proxies": [
     {
       "path": "/",
-      "proxyUrl": "http://18.117.248.161:3000/"
+      "proxyUrl": "http://35.174.162.146/"
     }
   ]
 }

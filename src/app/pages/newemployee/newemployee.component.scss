@@ -36,8 +36,11 @@ ion-item.item-has-focus>ion-label {
 }
 
 ion-button {
-    margin-top: 20px;
+   /*  *//*  margin-top: 20px;
+    width: 30%; */
+    margin-top: 10px;
     width: 30%;
+    margin-left: 35%;
     color: #000;
     --background: #52E5E7;
 }

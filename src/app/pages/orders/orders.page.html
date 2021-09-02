@@ -2,8 +2,8 @@
 
     <ion-title>Blue Vision</ion-title>
 
-    <ion-icon slot="end" name="add-circle-outline" routerLink="/orderform" routerDirection="root"></ion-icon>
-
+    <ion-icon slot="end" name="add-circle-outline" (click)="newOrder()" routerDirection="root"></ion-icon>
+    <!-- routerLink="/orderform" -->
     <ion-buttons slot="end">
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -21,10 +21,10 @@
             <ion-item class="select" lines='none'>
                 <ion-label>Filler by status</ion-label>
                 <ion-select formControlName="delivery_status">
-                    <ion-select-option value="pending">Pending</ion-select-option>
-                    <ion-select-option value="fitting">Fitting</ion-select-option>
-                    <ion-select-option value="ready">Ready to Deliver</ion-select-option>
-                    <ion-select-option value="delivered">Delivered</ion-select-option>
+                    <ion-select-option value="Pending">Pending</ion-select-option>
+                    <ion-select-option value="Fitting">Fitting</ion-select-option>
+                    <ion-select-option value="Ready">Ready to Deliver</ion-select-option>
+                    <ion-select-option value="Delivered">Delivered</ion-select-option>
                 </ion-select>
 
             </ion-item>
@@ -64,21 +64,23 @@
                     <th>Order ID</th>
                     <th>Order On</th>
                     <th class="order">Customer Name</th>
+                    <th class="order">Customer Phone </th>
                     <th>Price</th>
                     <th>Discount</th>
                     <th>Advance</th>
                     <th>Balance</th>
                     <th>Status</th>
-                    <!-- <th>Action</th> -->
+                    <th>Action</th>
                 </tr>
                 <tr *ngFor="let order of orderList">
                     <td>{{order.order_id}}</td>
-                    <td>{{order.created | date:'fullDate'}}</td>
+                    <td>{{order.order_date | date:'dd MMM YYYY'}}</td>
                     <td>{{order.customer_name}}</td>
-                    <td>₹ {{order.total_amount}}</td>
-                    <td>₹ {{order.discount}}</td>
-                    <td>₹ {{order.advance}}</td>
-                    <td>₹ {{order.balance}}</td>
+                    <td>{{order.customer_phone}}</td>
+                    <td>₹ {{order.total_amount | number : '1.2-2'}}</td>
+                    <td>₹ {{order.discount | number : '1.2-2'}}</td>
+                    <td>₹ {{order.advance | number : '1.2-2'}}</td>
+                    <td>₹ {{order.balance | number : '1.2-2'}}</td>
                     <td>{{order.delivery_status}}</td>
                     <!-- <td>
                         <ion-button class="export" (click)="getdetails(order._id)" size=small>click</ion-button>
@@ -86,14 +88,19 @@
                     <td>
                         <table>
                             <tr>
-                                <td style="border:1px solid black;">
-                                    <ion-icon class="create" name="create"></ion-icon>
+                                <td>
+                                    <ion-icon class="create" (click)="getdetails(order._id)" name="create-outline">
+                                    </ion-icon>
+                                    <!-- <ion-icon class="create" name="create"></ion-icon> -->
                                 </td>
-                                <td style="border:1px solid black;">
-                                    <ion-icon class="save" name="save"></ion-icon>
+                                <td>
+                                    <ion-icon class="save" (click)="showAlert(order._id, order.order_id )"
+                                        name="save-outline">
+                                    </ion-icon>
                                 </td>
-                                <td style="border:1px solid black;">
-                                    <ion-icon class="print" name="print"></ion-icon>
+                                <td>
+                                    <ion-icon class="print" [routerLink]="['/invoice', order._id]" name="print-outline">
+                                    </ion-icon>
                                 </td>
                             </tr>
                         </table>
@@ -101,5 +108,13 @@
                 </tr>
             </table>
         </div>
+
+
+        <ion-infinite-scroll threshold="200px" (ionInfinite)="loadData($event)">
+            <ion-infinite-scroll-content loadingSpinner="circles" loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+
     </div>
 </ion-content>

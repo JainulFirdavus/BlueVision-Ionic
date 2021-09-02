@@ -30,4 +30,11 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, PageService, AuthProvider, AppService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  titleCaseWord(word: string) {
+    if (!word) return word;
+    return word[0].toUpperCase() + word.substr(1).toLowerCase();
+  }
+
+
+}

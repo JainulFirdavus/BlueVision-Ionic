@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 import { AppService } from '../app.service';
 import { AuthProvider } from '../providers/auth';
@@ -16,49 +17,18 @@ export class HomePage implements OnInit {
   @Input('parentData') public name;
   @Output() public childEvent = new EventEmitter();
   loginForm: FormGroup;
+  baseUrl = environment.baseUrl;
   submitted = false;
   public errorMessages = {
     password: [
       { type: 'required', message: 'Name is required' },
-      // { type: 'maxlength', message: 'Name cant be longer than 100 characters' },
       { type: 'pattern', message: 'Not Valid Email' }
     ],
     email: [
       { type: 'required', message: 'Email is required' },
       { type: 'minLength', message: 'Please enter a min 4 letter' }
     ],
-    /* phone: [
-       { type: 'required', message: 'Phone number is required' },
-       { type: 'pattern', message: 'Please enter a valid phone number' }
-     ],
-     street: [
-       { type: 'required', message: 'Street name is required' },
-       {
-         type: 'maxlength',
-         message: 'Street name cant be longer than 100 characters'
-       }
-     ],
-     city: [
-       { type: 'required', message: 'City name is required' },
-       {
-         type: 'maxlength',
-         message: 'City name cant be longer than 100 characters'
-       }
-     ],
-     state: [
-       { type: 'required', message: 'State is required' },
-       {
-         type: 'maxlength',
-         message: 'State cant be longer than 100 characters'
-       }
-     ],
-     zip: [
-       { type: 'required', message: 'Zip code is required' },
-       {
-         type: 'pattern',
-         message: 'Please enter a valid zip code'
-       }
-     ] */
+
   };
   constructor(public formBuilder: FormBuilder, private auth: AuthProvider, private router: Router, public toastController: ToastController, public AppService: AppService) {
     this.loginForm = this.formBuilder.group({
@@ -75,17 +45,10 @@ export class HomePage implements OnInit {
     toast.present();
   }
 
-
-  /*  fireEvent() {
-     this.childEvent.emit('hai')
-   } */
-
   ngOnInit() {
+
     if (localStorage.getItem('token')) {
       var uses = JSON.parse(localStorage.getItem('token'))
-      // this.childEvent.emit('hai')
-      console.log(uses.role);
-
       this.AppService.stringSubject.next(uses.role)
       if (uses.token) {
         if (uses.role == 'admin') {
@@ -95,6 +58,7 @@ export class HomePage implements OnInit {
         }
       }
     }
+    // this.presentToast('Url: ' + this.baseUrl)
   }
 
   get password() {
@@ -113,7 +77,6 @@ export class HomePage implements OnInit {
     } else {
       this.auth.login(this.loginForm.value).subscribe((response) => {
         if (response && response.status == 1) {
-          // this.presentToast(response['status'])
           this.AppService.stringSubject.next(response.response.role)
           if (response.response.role == 'admin') {
             this.router.navigate(['/dashboard']);
@@ -121,7 +84,7 @@ export class HomePage implements OnInit {
             this.router.navigate(['/orders']);
           }
         } else {
-          this.presentToast('invalid details')
+          this.presentToast('User Not Exist')
         }
       });
     }

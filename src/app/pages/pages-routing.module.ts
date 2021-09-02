@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PagesGuard } from './pages.guard';
+import { InvoiceComponent } from './invoice/invoice.component'
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -58,6 +59,26 @@ const routes: Routes = [
   {
     path: 'customervisit',
     loadChildren: () => import('./customervisit/customervisit.module').then(m => m.CustomervisitPageModule),
+    canActivate: [PagesGuard]
+
+  },
+  {
+    path: 'branches',
+    loadChildren: () => import('./branches/branches.module').then(m => m.BranchesPageModule),
+    canActivate: [PagesGuard]
+
+  },
+  {
+    path: 'invoice/:invoiceId',
+    loadChildren: () => import('./invoice/invoice.module').then(m => m.InvoiceModule),
+    // component: InvoiceComponent,
+    canActivate: [PagesGuard]
+
+  },
+  {
+    path: 'branches/:brancheId',
+    loadChildren: () => import('./editbranch/editbranch.module').then(m => m.editBranchModule),
+     
     canActivate: [PagesGuard]
 
   },

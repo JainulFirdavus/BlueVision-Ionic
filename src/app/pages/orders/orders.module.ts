@@ -9,7 +9,8 @@ import { OrdersPage } from './orders.page';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule, ReactiveFormsModule,
+    ReactiveFormsModule,
+    IonicModule,
     OrdersPageRoutingModule
   ],
   declarations: [OrdersPage]

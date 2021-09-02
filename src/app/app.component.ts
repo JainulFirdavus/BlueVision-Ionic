@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
           },
           {
             name: 'Orders',
-            icon: 'bicycle-outline',
+            icon: 'reorder-four-outline',
             url: '/orders'
           },
           {
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
           },
           {
             name: 'Create Account',
-            icon: 'bicycle-outline',
+            icon: 'create-outline',
             url: '/newemployee'
           },
           {
@@ -61,8 +61,13 @@ export class AppComponent implements OnInit {
             url: '/settings'
           },
           {
+            name: 'Branches',
+            icon: 'location-outline',
+            url: '/branches'
+          },
+          {
             name: 'Logout',
-            icon: 'settings-outline',
+            icon: 'log-out-outline',
             url: 'logout'
           },
 
@@ -71,7 +76,7 @@ export class AppComponent implements OnInit {
         this.menuList = [
           {
             name: 'Orders',
-            icon: 'bicycle-outline',
+            icon: 'reorder-four-outline',
             url: '/orders'
           },
           {
@@ -91,7 +96,7 @@ export class AppComponent implements OnInit {
           },
           {
             name: 'Logout',
-            icon: 'settings-outline',
+            icon: 'log-out-outline',
             url: 'logout'
           },
         ]
@@ -114,7 +119,7 @@ export class AppComponent implements OnInit {
           },
           {
             name: 'Orders',
-            icon: 'bicycle-outline',
+            icon: 'reorder-four-outline',
             url: '/orders'
           },
           {
@@ -139,8 +144,13 @@ export class AppComponent implements OnInit {
           },
           {
             name: 'Create Employee',
-            icon: 'bicycle-outline',
+            icon: 'create-outline',
             url: '/newemployee'
+          },
+          {
+            name: 'Branches',
+            icon: 'location-outline',
+            url: '/branches'
           },
           {
             name: 'Settings',
@@ -149,7 +159,7 @@ export class AppComponent implements OnInit {
           },
           {
             name: 'Logout',
-            icon: 'settings-outline',
+            icon: 'log-out-outline',
             url: 'logout'
           },
 
@@ -158,7 +168,7 @@ export class AppComponent implements OnInit {
         this.menuList = [
           {
             name: 'Orders',
-            icon: 'bicycle-outline',
+            icon: 'reorder-four-outline',
             url: '/orders'
           },
           {
@@ -178,7 +188,7 @@ export class AppComponent implements OnInit {
           },
           {
             name: 'Logout',
-            icon: 'settings-outline',
+            icon: 'log-out-outline',
             url: 'logout'
           },
         ]

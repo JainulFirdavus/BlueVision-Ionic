@@ -84,7 +84,7 @@ h2 {
 }
 
 th {
-    text-align: left;
+    text-align: center;
     padding: 10px 10px;
     white-space: nowrap;
     font-size: 15px;
@@ -92,7 +92,9 @@ th {
 
 td {
     text-align: center;
-    padding: 10px 10px;
+    white-space: nowrap;
+
+    padding: 5px 10px;
 }
 
 tr:nth-child(even) {
@@ -104,13 +106,20 @@ tr:nth-child(even) {
 }
 
 .create {
-    color: black;
+    font-size: 22px;
+    color: greenyellow;
 }
 
 .save {
-    color: black;
+    font-size: 22px;
+    color: orange;
 }
 
 .print {
-    color: black;
+    font-size: 22px;
+    color: red;
+}
+
+.my-custom-class{
+padding: auto;
 }

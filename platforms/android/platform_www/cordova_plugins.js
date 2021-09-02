@@ -228,16 +228,26 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.StatusBar"
       ]
+    },
+    {
+      "id": "com.darktalker.cordova.screenshot.screenshot",
+      "file": "plugins/com.darktalker.cordova.screenshot/www/Screenshot.js",
+      "pluginId": "com.darktalker.cordova.screenshot",
+      "merges": [
+        "navigator.screenshot"
+      ]
     }
   ];
   module.exports.metadata = {
-    "cordova-plugin-device": "2.0.2",
+    "cordova-plugin-device": "2.0.3",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-ionic-webview": "4.2.1",
-    "cordova-plugin-splashscreen": "5.0.2",
-    "cordova-plugin-statusbar": "2.4.2",
-    "cordova-plugin-whitelist": "1.3.3"
+    "cordova-plugin-splashscreen": "5.0.4",
+    "cordova-plugin-statusbar": "2.4.3",
+    "cordova-plugin-whitelist": "1.3.5",
+    "cordova-plugin-androidx-adapter": "1.1.3",
+    "com.darktalker.cordova.screenshot": "0.1.5"
   };
 });

@@ -47,7 +47,6 @@ export class CustomervisitPage implements OnInit {
       return false;
     } else {
       this.auth.customerVisit(this.getuser.value).subscribe((res) => {
-
         if (res.status != 0) {
           let data = res.response[0] ? res.response[0].documentData : [];
           if (data.length > 0) {
@@ -60,5 +59,16 @@ export class CustomervisitPage implements OnInit {
         }
       })
     }
+  }
+
+  sendmessage(data) {
+    console.log("ai",data);
+
+    this.auth.sendmessage(data).subscribe((res) => {
+      if (res.status != 0) {
+      }
+    })
+
+
   }
 }

@@ -49,11 +49,15 @@ export class AuthProvider {
   }
 
   login(value) {
+    console.log(this.baseUrl + '/employee/login');
+
     return this.http.post(this.baseUrl + '/employee/login', { email: value.email, password: value.password }).pipe(
       map((res: any) => {
         if (res.status == 0) {
           return res
         } else {
+          console.log("res",res);
+          
           localStorage.setItem("token", JSON.stringify({ token: res.response.token, role: res.response.role, user_id: res.response.user_id, username: res.response.username }));
           return res
         }
